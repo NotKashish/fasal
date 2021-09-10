@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "582791979015",
+    "project_id": "fasal-444aa",
+    "storage_bucket": "fasal-444aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582791979015:android:6c322d6638ab96133c8aa2",
+        "android_client_info": {
+          "package_name": "com.example.fasal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582791979015-8r1rggm4rdme5nhba3648vjih5d5bcuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0yY31IhUeWJB12-hPpwfZMhdmIa810r0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582791979015-8r1rggm4rdme5nhba3648vjih5d5bcuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
