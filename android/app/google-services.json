@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "582791979015-6hbaa33c30kd4j7b0dqtgkqddq1k45l3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fasal",
+            "certificate_hash": "7f6a682b19d2374f3d70c34702f9700942dcec38"
+          }
+        },
+        {
           "client_id": "582791979015-8r1rggm4rdme5nhba3648vjih5d5bcuo.apps.googleusercontent.com",
           "client_type": 3
         }
