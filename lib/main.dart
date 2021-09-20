@@ -1,3 +1,4 @@
+import 'package:fasal/constants/constants.dart';
 import 'package:fasal/screens/authentication/authentication_wrapper.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,10 +30,12 @@ class MyApp extends StatelessWidget {
           ),
         ],
       child: MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fasal',
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: white,
+
       ),
        home: AuthenticationWrapper(),
       )

@@ -1,3 +1,4 @@
+import 'package:fasal/constants/constants.dart';
 import 'package:fasal/screens/authentication/signup.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,10 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: green,
+        title: Text('Fasal'),
+      ),
       body: Column(
         children: [
           TextField(
