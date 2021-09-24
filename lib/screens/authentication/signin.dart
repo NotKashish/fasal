@@ -20,8 +20,8 @@ class SignIn extends StatelessWidget {
           TextFormField(
             controller: emailController,
             decoration: InputDecoration(
-              hintText: "Enter username",
-              labelText: "Username",
+              hintText: "Enter Email",
+              labelText: "Email",
             ),
           ),
           TextFormField(
