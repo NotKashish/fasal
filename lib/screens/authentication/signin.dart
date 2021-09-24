@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignIn extends StatelessWidget {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -18,34 +17,34 @@ class SignIn extends StatelessWidget {
       ),
       body: Column(
         children: [
-          TextField(
+          TextFormField(
             controller: emailController,
             decoration: InputDecoration(
-              labelText: "Email",
+              hintText: "Enter username",
+              labelText: "Username",
             ),
           ),
-
-          TextField(
+          TextFormField(
             controller: passwordController,
+            obscureText: true,
             decoration: InputDecoration(
-              labelText: "Password"
+              hintText: "Enter password",
+              labelText: "Password",
             ),
           ),
-
           ElevatedButton(
             onPressed: () {
-              context.read<AuthenticationService>()
-                  .signIn(emailController.text.trim(),
-                    passwordController.text.trim());
-
+              context.read<AuthenticationService>().signIn(
+                  emailController.text.trim(), passwordController.text.trim());
             },
             child: Text("Sign In"),
           ),
-
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUp()),);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignUp()),
+              );
             },
             child: Text("Sign up Page"),
           )
