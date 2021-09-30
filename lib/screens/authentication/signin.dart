@@ -17,12 +17,16 @@ class SignIn extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SizedBox(height: 20.0),
           TextFormField(
             controller: emailController,
             decoration: InputDecoration(
               hintText: "Enter Email",
               labelText: "Email",
             ),
+          ),
+          SizedBox(
+            height: 20.0,
           ),
           TextFormField(
             controller: passwordController,
@@ -31,6 +35,9 @@ class SignIn extends StatelessWidget {
               hintText: "Enter password",
               labelText: "Password",
             ),
+          ),
+          SizedBox(
+            height: 20.0,
           ),
           ElevatedButton(
             onPressed: () {
@@ -53,3 +60,4 @@ class SignIn extends StatelessWidget {
     );
   }
 }
+
