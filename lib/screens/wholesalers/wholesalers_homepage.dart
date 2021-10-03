@@ -26,21 +26,6 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: eggShell,
-        title: Text('Appbar'),
-      ),
-      //needs to be worked on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff ofcourse'),
-            ],
-          ),
-        ),
-      ),
       body: IndexedStack(
         index: currentIndex,
         children: screens,

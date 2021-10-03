@@ -16,6 +16,16 @@ class _SearchFarmersState extends State<SearchFarmers> {
         title: Text('Search'),
         backgroundColor: mayGreen,
       ),
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Helpful stuff ofcourse'),
+            ],
+          ),
+        ),
+      ),
       body: Center(
         child: Text('hame'),
       ),

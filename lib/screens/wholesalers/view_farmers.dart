@@ -16,6 +16,16 @@ class _ViewFarmersState extends State<ViewFarmers> {
         title: Text('View'),
         backgroundColor: oliveGreen,
       ),
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Helpful stuff ofcourse'),
+            ],
+          ),
+        ),
+      ),
       body: Center(
         child: Text('haa'),
       ),

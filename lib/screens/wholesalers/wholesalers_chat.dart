@@ -16,6 +16,16 @@ class _WholesalersChatState extends State<WholesalersChat> {
         backgroundColor: hunterGreen,
         title: Text('Chat'),
       ),
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Helpful stuff ofcourse'),
+            ],
+          ),
+        ),
+      ),
       body: Center(
         child: Text('Kame'),
       ),
