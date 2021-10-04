@@ -8,7 +8,7 @@ import 'view_farmers.dart';
 import 'search_farmers.dart';
 
 class WholesalerHomepage extends StatefulWidget {
-  const WholesalerHomepage({Key? key}) : super(key: key);
+  const   WholesalerHomepage({Key? key}) : super(key: key);
 
   @override
   _WholesalerHomepageState createState() => _WholesalerHomepageState();
@@ -26,6 +26,21 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: eggShell,
+        title: Text('Appbar'),
+      ),
+      //Todo: needs to be worked on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Helpful stuff ofcourse'),
+            ],
+          ),
+        ),
+      ),
       body: IndexedStack(
         index: currentIndex,
         children: screens,

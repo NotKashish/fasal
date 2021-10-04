@@ -2,40 +2,46 @@ import 'package:fasal/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
+
   const CustomTextField({
     Key? key,
     this.hintText,
     this.labelText,
-    this.maxLines,
     required this.controller,
     this.prefixIcon,
     this.validator,
     this.isEnabled,
     this.keyboardType,
     this.labelStyle,
+    this.obscureText = false,
   }) : super(key: key);
+
+
   final String? hintText;
   final String? labelText;
   final TextEditingController controller;
   final Widget? prefixIcon;
-  final int? maxLines;
   final FormFieldValidator? validator;
   final bool? isEnabled;
   final TextInputType? keyboardType;
   final TextStyle? labelStyle;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 0,
+          horizontal: 20,
+        ),
         child: TextFormField(
           controller: controller,
           validator: validator,
           enabled: isEnabled,
           keyboardType: keyboardType,
-          maxLines: maxLines,
+          obscureText: obscureText,
           decoration: InputDecoration(
             prefixIcon: prefixIcon,
             labelText: labelText,

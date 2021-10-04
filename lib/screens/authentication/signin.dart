@@ -3,6 +3,7 @@ import 'package:fasal/screens/authentication/signup.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../widgets/custom_textfield.dart';
 
 class SignIn extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -17,27 +18,22 @@ class SignIn extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 20.0),
-          TextFormField(
+          SizedBox(
+            height: 5
+          ),
+          CustomTextField(
             controller: emailController,
-            decoration: InputDecoration(
-              hintText: "Enter Email",
-              labelText: "Email",
-            ),
+            hintText: 'Enter your E-mail',
+            labelText: 'Email',
           ),
-          SizedBox(
-            height: 20.0,
-          ),
-          TextFormField(
+          CustomTextField(
             controller: passwordController,
+            hintText: 'Enter your Password',
+            labelText: 'Password',
             obscureText: true,
-            decoration: InputDecoration(
-              hintText: "Enter password",
-              labelText: "Password",
-            ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           ElevatedButton(
             onPressed: () {

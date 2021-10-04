@@ -25,7 +25,8 @@ class AuthenticationService {
     }
   }
 
-  Future<String> signup(String email, String password) async {
+  Future<String> signup(String email, String password, String type,
+      String name, String phoneNo, String aadharNo) async {
     try {
       await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -33,6 +34,10 @@ class AuthenticationService {
       String uid = user!.uid;
       await _collectionReference.doc(uid).set({
         'uid': uid,
+        'name': name,
+        'phone_no': phoneNo,
+        'aadhar_no': aadharNo,
+        'type': type,
       });
 
       return "Signed up";
