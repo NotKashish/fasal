@@ -1,3 +1,6 @@
+import 'package:fasal/helper/shared_preferences_helper.dart';
+import 'package:fasal/models/farmer.dart';
+import 'package:fasal/models/wholesaler.dart';
 import 'package:fasal/screens/authentication/loading_page.dart';
 import 'package:fasal/screens/farmers/farmers_homepage.dart';
 import 'package:fasal/screens/wholesalers/wholesalers_homepage.dart';
@@ -28,10 +31,17 @@ class ShowHomePage extends StatelessWidget {
             Map<String, dynamic> data = snapshot.data!.data() as Map<
                 String,
                 dynamic>;
-            if (data['type'] == 'farmer')
+            if (data['type'] == 'farmer') {
+              print(data);
+              Farmer farmer = farmerFromMap(data);
+              setValues(farmer.uid, farmer.name, farmer.email, farmer.phoneNo, farmer.aadharNo);
               return FarmersHomepage();
-            if (data['type'] == 'wholesaler')
+            }
+            if (data['type'] == 'wholesaler') {
+              Wholesaler wholesaler = wholesalerFromMap(data);
+              setValues(wholesaler.uid, wholesaler.name, wholesaler.email, wholesaler.phoneNo, wholesaler.aadharNo);
               return WholesalerHomepage();
+            }
           }
           return LoadingPage(icon: Icons.circle, text: 'Loading');
         });

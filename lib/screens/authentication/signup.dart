@@ -24,13 +24,13 @@ class _SignUpState extends State<SignUp> {
 
   bool farmer = true;
 
-  String type = 'Farmer';
+  String type = 'farmer';
 
   void toggleSwitch(bool value) {
     if(farmer) {
       setState(() {
         farmer = false;
-        type = 'Wholesaler';
+        type = 'wholesaler';
       });
     } else {
       setState(() {

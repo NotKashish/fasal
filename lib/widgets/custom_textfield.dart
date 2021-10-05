@@ -49,14 +49,14 @@ class CustomTextField extends StatelessWidget {
             enabled: isEnabled ?? true,
             labelStyle: labelStyle ??
                 TextStyle(
-                  color: Black,
+                  color: black,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                 ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide(
-                color: Black,
+                color: black,
                 style: BorderStyle.solid,
                 width: 1.5,
               ),
@@ -64,7 +64,7 @@ class CustomTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide(
-                color: Black.withOpacity(0.2),
+                color: black.withOpacity(0.2),
                 style: BorderStyle.solid,
                 width: 1.5,
               ),

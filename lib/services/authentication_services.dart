@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 class AuthenticationService {
 
@@ -35,6 +38,7 @@ class AuthenticationService {
       await _collectionReference.doc(uid).set({
         'uid': uid,
         'name': name,
+        'email': email,
         'phone_no': phoneNo,
         'aadhar_no': aadharNo,
         'type': type,
@@ -43,7 +47,6 @@ class AuthenticationService {
       return "Signed up";
     } on FirebaseAuthException catch (e) {
       return e.message!;
-
     }
   }
 
