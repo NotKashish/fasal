@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fasal/constants/constants.dart';
 
-class SearchFarmers extends StatefulWidget {
-  const SearchFarmers({Key? key}) : super(key: key);
+class FarmersChat extends StatefulWidget {
+  const FarmersChat({Key? key}) : super(key: key);
 
   @override
-  _SearchFarmersState createState() => _SearchFarmersState();
+  _FarmersChatState createState() => _FarmersChatState();
 }
 
-class _SearchFarmersState extends State<SearchFarmers> {
+class _FarmersChatState extends State<FarmersChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
-        backgroundColor: mayGreen,
+        backgroundColor: hunterGreen,
+        title: Text('Chat'),
       ),
       drawer: Drawer(
         child: Center(
@@ -27,8 +27,9 @@ class _SearchFarmersState extends State<SearchFarmers> {
         ),
       ),
       body: Center(
-        child: Text('hame'),
+        child: Text('Did'),
       ),
     );
+    ;
   }
 }

@@ -3,14 +3,14 @@ import 'package:fasal/constants/constants.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:provider/provider.dart';
 
-class WholesalersProfile extends StatefulWidget {
-  const WholesalersProfile({Key? key}) : super(key: key);
+class FarmersProfile extends StatefulWidget {
+  const FarmersProfile({Key? key}) : super(key: key);
 
   @override
-  _WholesalersProfileState createState() => _WholesalersProfileState();
+  _FarmersProfileState createState() => _FarmersProfileState();
 }
 
-class _WholesalersProfileState extends State<WholesalersProfile> {
+class _FarmersProfileState extends State<FarmersProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,5 +61,6 @@ class _WholesalersProfileState extends State<WholesalersProfile> {
         ],
       ),
     );
+    ;
   }
 }

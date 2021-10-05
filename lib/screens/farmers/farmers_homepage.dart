@@ -1,5 +1,9 @@
 import 'package:fasal/constants/constants.dart';
 import 'package:fasal/constants/keys.dart';
+import 'package:fasal/screens/farmers/farmers_chat.dart';
+import 'package:fasal/screens/farmers/farmers_profile.dart';
+import 'package:fasal/screens/farmers/upload_produce.dart';
+import 'package:fasal/screens/farmers/view_wholesalers.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:fasal/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +18,11 @@ class FarmersHomepage extends StatefulWidget {
 }
 
 class _FarmersHomepageState extends State<FarmersHomepage> {
-
   void getData() async {
     SharedPreferences _pref = await SharedPreferences.getInstance();
     print(_pref.get(UID_KEY));
-
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,40 +30,48 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
     super.initState();
   }
 
+  int currentIndex = 0;
+  final screens = [
+    FarmersChat(),
+    UploadProduce(),
+    ViewWholesalers(),
+    FarmersProfile(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController c = TextEditingController();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: green,
-        title: Text('Fasal'),
+      body: IndexedStack(
+        index: currentIndex,
+        children: screens,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Hey Milloni, with double L, you are a farmer",
-              style: TextStyle(
-                color: lightGreen,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.read<AuthenticationService>().signOut();
-              },
-              child: Text(
-                'SignOut',
-              ),
-            ),
-            CustomTextField(
-              controller: c,
-              labelText: 'Enter Name',
-              hintText: 'Enter your name',
-              keyboardType: TextInputType.emailAddress,
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() => currentIndex = index),
+        showUnselectedLabels: false,
+        iconSize: 28,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+            backgroundColor: hunterGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.upload),
+            label: 'Upload',
+            backgroundColor: mayGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'View',
+            backgroundColor: oliveGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            backgroundColor: androidGreen,
+          ),
+        ],
       ),
     );
   }

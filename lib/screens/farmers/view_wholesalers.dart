@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:fasal/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ViewFarmers extends StatefulWidget {
-  const ViewFarmers({Key? key}) : super(key: key);
+class ViewWholesalers extends StatefulWidget {
+  const ViewWholesalers({Key? key}) : super(key: key);
 
   @override
-  _ViewFarmersState createState() => _ViewFarmersState();
+  _ViewWholesalersState createState() => _ViewWholesalersState();
 }
 
-class _ViewFarmersState extends State<ViewFarmers> {
+class _ViewWholesalersState extends State<ViewWholesalers> {
   late CollectionReference collectionReference;
 
   Future getPosts() async {
     QuerySnapshot qn =
-        await collectionReference.where("type", isEqualTo: "farmer").get();
+        await collectionReference.where("type", isEqualTo: "wholesaler").get();
     return qn.docs;
   }
 
@@ -28,7 +28,7 @@ class _ViewFarmersState extends State<ViewFarmers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Farmers'),
+        title: Text('View Wholesalers'),
         backgroundColor: oliveGreen,
       ),
       drawer: Drawer(
@@ -89,5 +89,6 @@ class _ViewFarmersState extends State<ViewFarmers> {
         },
       ),
     );
+    ;
   }
 }
