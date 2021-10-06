@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fasal/constants/constants.dart';
-import 'package:fasal/services/authentication_services.dart';
-import 'package:provider/provider.dart';
+import 'package:fasal/constants/keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WholesalersProfile extends StatefulWidget {
   const WholesalersProfile({Key? key}) : super(key: key);
@@ -11,7 +11,21 @@ class WholesalersProfile extends StatefulWidget {
 }
 
 class _WholesalersProfileState extends State<WholesalersProfile> {
+  void getData() async {
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    _pref.get(UID_KEY);
+    _pref.get(NAME_KEY);
+    _pref.get(EMAIL_KEY);
+    _pref.get(PHONE_KEY);
+    _pref.get(AADHAR_KEY);
+  }
+
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,18 +58,10 @@ class _WholesalersProfileState extends State<WholesalersProfile> {
             ),
           ),
           Text(
-            'Name',
+            NAME_KEY,
             style: TextStyle(
               color: androidGreen,
               fontWeight: FontWeight.w900,
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.read<AuthenticationService>().signOut();
-            },
-            child: Text(
-              'SignOut',
             ),
           ),
         ],
@@ -63,3 +69,12 @@ class _WholesalersProfileState extends State<WholesalersProfile> {
     );
   }
 }
+
+// ElevatedButton(
+// onPressed: () {
+// context.read<AuthenticationService>().signOut();
+// },
+// child: Text(
+// 'SignOut',
+// ),
+// ),
