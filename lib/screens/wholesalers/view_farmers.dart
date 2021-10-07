@@ -55,28 +55,30 @@ class _ViewFarmersState extends State<ViewFarmers> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 20.0,
+                      height: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                    SizedBox(
+                      height: 70,
                       child: Card(
-                        elevation: 4,
-                        shadowColor: Colors.black.withOpacity(0.8),
-                        color: Colors.white,
+                        elevation: 3,
+                        margin: EdgeInsets.all(5),
+                        // shadowColor: Colors.black.withOpacity(0.8),
+                        color: oliveGreen,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: ListTile(
                           title: Text(
                             snapshot.data[index].data()["name"],
                             style: TextStyle(
-                              fontSize: 15.0,
+                              color: Colors.white,
+                              fontSize: 21.0,
                             ),
                           ),
                           onTap: (null),
                           leading: Icon(
-                            Icons.format_list_numbered,
-                            color: Colors.blueGrey,
+                            Icons.person,
+                            color: Colors.white,
                           ),
                         ),
                       ),

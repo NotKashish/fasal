@@ -27,7 +27,11 @@ class _WholesalersChatState extends State<WholesalersChat> {
         ),
       ),
       body: Center(
-        child: Text('Kame'),
+        child: Column(
+          children: [
+            Text('hello'),
+          ],
+        ),
       ),
     );
   }

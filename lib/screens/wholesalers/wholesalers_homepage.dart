@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'search_farmers.dart';
 import 'view_farmers.dart';
 import 'wholesalers_chat.dart';
-import 'wholesalers_profile.dart';
+import '../profile_page.dart';
 
 class WholesalerHomepage extends StatefulWidget {
   const WholesalerHomepage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
     WholesalersChat(),
     SearchFarmers(),
     ViewFarmers(),
-    WholesalersProfile(),
+    ProfilePage(),
   ];
 
   @override

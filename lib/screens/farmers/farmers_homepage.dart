@@ -1,9 +1,9 @@
 import 'package:fasal/constants/constants.dart';
 import 'package:fasal/constants/keys.dart';
 import 'package:fasal/screens/farmers/farmers_chat.dart';
-import 'package:fasal/screens/farmers/farmers_profile.dart';
 import 'package:fasal/screens/farmers/upload_produce.dart';
 import 'package:fasal/screens/farmers/view_wholesalers.dart';
+import 'package:fasal/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,7 +32,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
     FarmersChat(),
     UploadProduce(),
     ViewWholesalers(),
-    FarmersProfile(),
+    ProfilePage(),
   ];
 
   @override

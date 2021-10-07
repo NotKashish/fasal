@@ -1,19 +1,22 @@
 import 'package:fasal/constants/constants.dart';
 import 'package:fasal/constants/keys.dart';
+import 'package:fasal/services/authentication_services.dart';
 import 'package:fasal/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class WholesalersProfile extends StatefulWidget {
-  const WholesalersProfile({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  _WholesalersProfileState createState() => _WholesalersProfileState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _WholesalersProfileState extends State<WholesalersProfile> {
+class _ProfilePageState extends State<ProfilePage> {
   void getData() async {
     SharedPreferences _pref = await SharedPreferences.getInstance();
+
     _pref.get(UID_KEY);
     _pref.get(NAME_KEY);
     _pref.get(EMAIL_KEY);
@@ -62,6 +65,33 @@ class _WholesalersProfileState extends State<WholesalersProfile> {
             height: 18.0,
           ),
           buildAbout(),
+          const SizedBox(
+            height: 60.0,
+          ),
+          InkWell(
+            onTap: () {
+              context.read<AuthenticationService>().signOut();
+            },
+            child: new Container(
+              margin: EdgeInsets.symmetric(horizontal: 30.0),
+              // padding: EdgeInsets.symmetric(horizontal: 10.0),
+              width: 60.0,
+              height: 50.0,
+              decoration: new BoxDecoration(
+                color: androidGreen,
+                borderRadius: new BorderRadius.circular(20.0),
+              ),
+              child: new Center(
+                child: Text(
+                  'Logout',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    // fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
