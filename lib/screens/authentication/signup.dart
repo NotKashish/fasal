@@ -2,11 +2,11 @@ import 'package:fasal/screens/authentication/signin.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/custom_textfield.dart';
+
 import '../../constants/constants.dart';
+import '../../widgets/custom_textfield.dart';
 
 class SignUp extends StatefulWidget {
-  
   @override
   State<SignUp> createState() => _SignUpState();
 }
@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
   String type = 'farmer';
 
   void toggleSwitch(bool value) {
-    if(farmer) {
+    if (farmer) {
       setState(() {
         farmer = false;
         type = 'wholesaler';
@@ -50,9 +50,7 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-                height: 5
-            ),
+            SizedBox(height: 5),
             Text(
               type,
             ),
@@ -92,13 +90,13 @@ class _SignUpState extends State<SignUp> {
             ElevatedButton(
               onPressed: () {
                 context.read<AuthenticationService>().signup(
-                  emailController.text.trim(),
-                  passwordController.text.trim(),
-                  type,
-                  nameController.text.trim(),
-                  phoneController.text.trim(),
-                  aadharController.text.trim(),
-                );
+                      emailController.text.trim(),
+                      passwordController.text.trim(),
+                      type,
+                      nameController.text.trim(),
+                      phoneController.text.trim(),
+                      aadharController.text.trim(),
+                    );
               },
               child: Text("Sign Up"),
             ),

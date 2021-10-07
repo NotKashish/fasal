@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 Farmer farmerFromMap(Map<String, dynamic> data) => Farmer.fromMap(data);
 
 class Farmer {
-
   Farmer({
     required this.uid,
     required this.name,
@@ -18,8 +15,7 @@ class Farmer {
   String phoneNo;
   String aadharNo;
 
-  factory Farmer.fromMap(Map<String, dynamic> map) =>
-      Farmer(
+  factory Farmer.fromMap(Map<String, dynamic> map) => Farmer(
         uid: map['uid'],
         name: map['name'],
         email: map['email'],

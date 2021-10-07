@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:fasal/constants/constants.dart';
-import 'package:fasal/services/authentication_services.dart';
-import 'package:provider/provider.dart';
+import 'package:fasal/constants/keys.dart';
+import 'package:fasal/widgets/profile_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FarmersProfile extends StatefulWidget {
   const FarmersProfile({Key? key}) : super(key: key);
@@ -10,8 +11,22 @@ class FarmersProfile extends StatefulWidget {
   _FarmersProfileState createState() => _FarmersProfileState();
 }
 
+void getData() async {
+  SharedPreferences _pref = await SharedPreferences.getInstance();
+  _pref.get(UID_KEY);
+  _pref.get(NAME_KEY);
+  _pref.get(EMAIL_KEY);
+  _pref.get(PHONE_KEY);
+  _pref.get(AADHAR_KEY);
+}
+
 class _FarmersProfileState extends State<FarmersProfile> {
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -28,39 +43,62 @@ class _FarmersProfileState extends State<FarmersProfile> {
           ),
         ),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: CircleAvatar(
-              backgroundColor: androidGreen,
-              radius: 40.0,
-              child: Icon(
-                Icons.person,
-                size: 50,
-              ),
-            ),
+          const SizedBox(
+            height: 15.0,
           ),
-          Text(
-            'Name',
-            style: TextStyle(
-              color: androidGreen,
-              fontWeight: FontWeight.w900,
-            ),
+          ProfileWidget(
+            imagePath:
+                'https://i.pinimg.com/originals/0a/6c/ae/0a6caeadd01eb5d9ca8ebb69d71c1fed.jpg',
+            onClicked: () async {},
           ),
-          ElevatedButton(
-            onPressed: () {
-              context.read<AuthenticationService>().signOut();
-            },
-            child: Text(
-              'SignOut',
-            ),
+          const SizedBox(
+            height: 18.0,
           ),
+          buildName(),
+          const SizedBox(
+            height: 18.0,
+          ),
+          buildAbout(),
         ],
       ),
     );
-    ;
   }
+
+  Widget buildName() => Column(
+        children: [
+          Text(
+            NAME_KEY,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            EMAIL_KEY,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 16,
+            ),
+          )
+        ],
+      );
+
+  Widget buildAbout() => Container(
+        padding: EdgeInsets.symmetric(horizontal: 48),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'About',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Long ago, the four nations lived together in harmony. Then, everything changed when the Fire Nation attacked. Only the Avatar, master of all four elements, could stop them, but when the world needed him most, he vanished. A hundred years passed and my brother and I discovered the new Avatar, an airbender named Aang.',
+              style: TextStyle(fontSize: 16, height: 1.4),
+            ),
+          ],
+        ),
+      );
 }

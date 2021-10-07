@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 Wholesaler wholesalerFromMap(Map<String, dynamic> data) =>
     Wholesaler.fromMap(data);
 

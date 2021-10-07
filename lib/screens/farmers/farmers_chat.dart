@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fasal/constants/constants.dart';
+import 'package:flutter/material.dart';
 
 class FarmersChat extends StatefulWidget {
   const FarmersChat({Key? key}) : super(key: key);
@@ -30,6 +30,5 @@ class _FarmersChatState extends State<FarmersChat> {
         child: Text('Did'),
       ),
     );
-    ;
   }
 }

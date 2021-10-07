@@ -3,6 +3,7 @@ import 'package:fasal/screens/authentication/signup.dart';
 import 'package:fasal/services/authentication_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../widgets/custom_textfield.dart';
 
 class SignIn extends StatelessWidget {
@@ -18,9 +19,7 @@ class SignIn extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 5
-          ),
+          SizedBox(height: 5),
           CustomTextField(
             controller: emailController,
             hintText: 'Enter your E-mail',
@@ -56,4 +55,3 @@ class SignIn extends StatelessWidget {
     );
   }
 }
-

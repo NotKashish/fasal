@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:fasal/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fasal/constants/constants.dart';
+import 'package:flutter/material.dart';
 
 class ViewWholesalers extends StatefulWidget {
   const ViewWholesalers({Key? key}) : super(key: key);
@@ -89,6 +89,5 @@ class _ViewWholesalersState extends State<ViewWholesalers> {
         },
       ),
     );
-    ;
   }
 }

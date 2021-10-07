@@ -1,8 +1,9 @@
-import '../models/farmer.dart';
-import '../constants/keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<void> setValues(String uid, String name, String email, String phoneNo, String aadharNo) async {
+import '../constants/keys.dart';
+
+Future<void> setValues(String uid, String name, String email, String phoneNo,
+    String aadharNo) async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   await _prefs.setString(UID_KEY, uid);
   await _prefs.setString(NAME_KEY, name);
@@ -10,4 +11,3 @@ Future<void> setValues(String uid, String name, String email, String phoneNo, St
   await _prefs.setString(PHONE_KEY, phoneNo);
   await _prefs.setString(AADHAR_KEY, aadharNo);
 }
-

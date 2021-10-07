@@ -1,11 +1,10 @@
-import 'package:fasal/services/authentication_services.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:fasal/constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import 'search_farmers.dart';
+import 'view_farmers.dart';
 import 'wholesalers_chat.dart';
 import 'wholesalers_profile.dart';
-import 'view_farmers.dart';
-import 'search_farmers.dart';
 
 class WholesalerHomepage extends StatefulWidget {
   const WholesalerHomepage({Key? key}) : super(key: key);

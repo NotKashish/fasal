@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fasal/constants/constants.dart';
+import 'package:flutter/material.dart';
 
 class UploadProduce extends StatefulWidget {
   const UploadProduce({Key? key}) : super(key: key);
@@ -30,6 +30,5 @@ class _UploadProduceState extends State<UploadProduce> {
         child: Text('some work for you'),
       ),
     );
-    ;
   }
 }

@@ -4,10 +4,7 @@ import 'package:fasal/screens/farmers/farmers_chat.dart';
 import 'package:fasal/screens/farmers/farmers_profile.dart';
 import 'package:fasal/screens/farmers/upload_produce.dart';
 import 'package:fasal/screens/farmers/view_wholesalers.dart';
-import 'package:fasal/services/authentication_services.dart';
-import 'package:fasal/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FarmersHomepage extends StatefulWidget {
