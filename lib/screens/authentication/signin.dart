@@ -12,22 +12,22 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Scaffold(
-        backgroundColor: eggShell,
-        appBar: AppBar(
-          backgroundColor: androidGreen,
-          title: Text(
-            'Fasal',
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 32,
-              fontWeight: FontWeight.w300,
-            ),
+    return Scaffold(
+      backgroundColor: eggShell,
+      appBar: AppBar(
+        backgroundColor: androidGreen,
+        title: Text(
+          'Fasal',
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 32,
+            fontWeight: FontWeight.w300,
           ),
-          centerTitle: true,
         ),
-        body: Column(
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // const SizedBox(
@@ -60,6 +60,7 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 60.0,
             ),
+            //SIGN IN BUTTON
             InkWell(
               onTap: () {
                 context.read<AuthenticationService>().signIn(
@@ -90,6 +91,7 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
+            //SIGN UP BUTTON
             InkWell(
               onTap: () {
                 Navigator.push(

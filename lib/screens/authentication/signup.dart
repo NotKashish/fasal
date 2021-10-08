@@ -125,6 +125,7 @@ class _SignUpState extends State<SignUp> {
             SizedBox(
               height: 25.0,
             ),
+            //SIGN UP BUTTON
             InkWell(
               onTap: () {
                 context.read<AuthenticationService>().signup(
@@ -157,6 +158,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
+
             const SizedBox(
               height: 15.0,
             ),
@@ -173,6 +175,7 @@ class _SignUpState extends State<SignUp> {
             //   },
             //   child: Text("Sign Up"),
             // ),
+            //SIGN IN BUTTON
             InkWell(
               onTap: () {
                 Navigator.push(
