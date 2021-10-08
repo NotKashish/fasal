@@ -63,7 +63,7 @@ class _ViewFarmersState extends State<ViewFarmers> {
                         elevation: 3,
                         margin: EdgeInsets.all(5),
                         // shadowColor: Colors.black.withOpacity(0.8),
-                        color: oliveGreen,
+                        color: androidGreen,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
@@ -71,7 +71,7 @@ class _ViewFarmersState extends State<ViewFarmers> {
                           title: Text(
                             snapshot.data[index].data()["name"],
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black87,
                               fontSize: 21.0,
                             ),
                           ),
