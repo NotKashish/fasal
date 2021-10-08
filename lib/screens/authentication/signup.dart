@@ -127,9 +127,14 @@ class _SignUpState extends State<SignUp> {
             ),
             InkWell(
               onTap: () {
-                context.read<AuthenticationService>().signIn(
-                    emailController.text.trim(),
-                    passwordController.text.trim());
+                context.read<AuthenticationService>().signup(
+                      emailController.text.trim(),
+                      passwordController.text.trim(),
+                      type,
+                      nameController.text.trim(),
+                      phoneController.text.trim(),
+                      aadharController.text.trim(),
+                    );
               },
               child: new Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
