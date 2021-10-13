@@ -69,8 +69,14 @@ class _SignUpState extends State<SignUp> {
               // width: 200,
               image: AssetImage('assets/31110.jpg'),
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Text(
-              type,
+              type.replaceFirst(type[0], type[0].toUpperCase()),
+              style: TextStyle(
+                fontSize: 22,
+              ),
             ),
             CupertinoSwitch(
               activeColor: androidGreen,
