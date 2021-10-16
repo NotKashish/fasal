@@ -11,3 +11,8 @@ Future<void> setValues(String uid, String name, String email, String phoneNo,
   await _prefs.setString(PHONE_KEY, phoneNo);
   await _prefs.setString(AADHAR_KEY, aadharNo);
 }
+
+Future<String?> getUidFromPrefs() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  return _prefs.getString(UID_KEY);
+}
