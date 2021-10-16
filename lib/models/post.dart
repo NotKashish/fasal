@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Post{
 
   final String postId;
@@ -17,5 +19,16 @@ class Post{
     this.quantity = 1,
     this.quality = "Average",
   });
+
+  factory Post.fromDocument(DocumentSnapshot doc){
+    Map postData = doc.data() as Map;
+    return Post(
+        postId: postData['postId'],
+      postTitle: postData['postTitle'],
+      farmerId: postData['farmerId'],
+      description: postData['description'],
+      mediaUrl: postData['mediaUrl']
+    );
+  }
 
 }
