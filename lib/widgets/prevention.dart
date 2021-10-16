@@ -31,8 +31,10 @@ class _PreventionState extends State<Prevention> {
         title: Text('Tips to stay fruits fresh'),
       ),
       drawer: MyDrawer(),
-      body: Center(
-        child: Text('Don’t refrigerate.Store in a cool, dark place with relatively high humidity.Allow air circulation.Keep separate from onions, bananas, and other ethylene-producing items.Whether they’re star'),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        child: Text(
+            'Don’t refrigerate.Store in a cool, dark place with relatively high humidity.Allow air circulation.Keep separate from onions, bananas, and other ethylene-producing items.Whether they’re star'),
       ),
       // body: IndexedStack(
       //   index: currentIndex,

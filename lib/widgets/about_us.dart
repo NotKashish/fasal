@@ -31,7 +31,8 @@ class _AboutState extends State<About> {
         title: Text('About us'),
       ),
       drawer: MyDrawer(),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Text(
           'we the students of shah and anchor kutchhi enginerring college,started this for betterment of farmers',
           style: TextStyle(fontSize: 16),
