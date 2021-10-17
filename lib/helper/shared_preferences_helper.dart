@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../constants/keys.dart';
 
 Future<void> setValues(String uid, String name, String email, String phoneNo,
@@ -16,4 +15,29 @@ Future<void> setValues(String uid, String name, String email, String phoneNo,
 Future<String?> getUidFromPrefs() async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   return _prefs.getString(UID_KEY);
+}
+
+Future<String?> getNameFromPrefs() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  return _prefs.getString(NAME_KEY);
+}
+
+Future<String?> getEmailFromPrefs() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  return _prefs.getString(EMAIL_KEY);
+}
+
+Future<String?> getPhoneFromPrefs() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  return _prefs.getString(PHONE_KEY);
+}
+
+Future<String?> getAadharFromPrefs() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  return _prefs.getString(AADHAR_KEY);
+}
+
+Future<String?> getRegionFromPrefs() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  return _prefs.getString(REGION_KEY);
 }

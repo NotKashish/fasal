@@ -1,3 +1,4 @@
+import 'package:fasal/helper/shared_preferences_helper.dart';
 import 'package:fasal/widgets/prevention.dart';
 import 'package:fasal/widgets/price.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,29 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+
+  String userName = "";
+  String userEmail = "";
+
+  getData() async {
+    getNameFromPrefs().then((value){
+      setState(() {
+        userName = value!;
+      });
+    });
+    getEmailFromPrefs().then((value){
+      setState(() {
+        userEmail = value!;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -20,13 +44,13 @@ class _MyDrawerState extends State<MyDrawer> {
         children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: Colors.green[700]),
-            accountName: Text('AccountName'),
-            accountEmail: Text('AccountEmail'),
+            accountName: Text(userName),
+            accountEmail: Text(userEmail),
           ),
           ListTile(
             onTap: () {
               // Navigator.pop(context);
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Price(),
@@ -38,7 +62,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Helpline(),
@@ -50,7 +74,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Prevention(),
@@ -62,7 +86,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => About(),

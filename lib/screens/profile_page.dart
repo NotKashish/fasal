@@ -1,6 +1,8 @@
 import 'package:fasal/constants/constants.dart';
 import 'package:fasal/constants/keys.dart';
+import 'package:fasal/helper/shared_preferences_helper.dart';
 import 'package:fasal/services/authentication_services.dart';
+import 'package:fasal/widgets/drawer.dart';
 import 'package:fasal/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
@@ -14,14 +16,39 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  void getData() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
 
-    _pref.get(UID_KEY);
-    _pref.get(NAME_KEY);
-    _pref.get(EMAIL_KEY);
-    _pref.get(PHONE_KEY);
-    _pref.get(AADHAR_KEY);
+  String userName = "";
+  String userEmail = "";
+  String userPhone = "";
+  String userAadhar = "";
+  String userRegion = "";
+
+  void getData() async {
+    getNameFromPrefs().then((value){
+      setState(() {
+        userName = value!;
+      });
+    });
+    getEmailFromPrefs().then((value){
+      setState(() {
+        userEmail = value!;
+      });
+    });
+    getPhoneFromPrefs().then((value){
+      setState(() {
+        userPhone = value!;
+      });
+    });
+    getAadharFromPrefs().then((value){
+      setState(() {
+        userAadhar = value!;
+      });
+    });
+    getRegionFromPrefs().then((value){
+      setState(() {
+        userRegion = value!;
+      });
+    });
   }
 
   @override
@@ -36,16 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('Profile'),
         backgroundColor: androidGreen,
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff of course'),
-            ],
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
@@ -64,7 +82,15 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(
             height: 18.0,
           ),
-          buildAbout(),
+          buildPhone(),
+          const SizedBox(
+            height: 18.0,
+          ),
+          buildAadhar(),
+          const SizedBox(
+            height: 18.0,
+          ),
+          buildRegion(),
           const SizedBox(
             height: 60.0,
           ),
@@ -78,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
               width: 60.0,
               height: 50.0,
               decoration: new BoxDecoration(
-                color: androidGreen,
+                color: deepChestnut,
                 borderRadius: new BorderRadius.circular(20.0),
               ),
               child: new Center(
@@ -86,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   'Logout',
                   style: TextStyle(
                     fontSize: 20.0,
-                    // fontWeight: FontWeight.w600,
+                    color: white
                   ),
                 ),
               ),
@@ -100,12 +126,12 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildName() => Column(
         children: [
           Text(
-            NAME_KEY,
+            userName,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           const SizedBox(height: 6),
           Text(
-            EMAIL_KEY,
+            userEmail,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 16,
@@ -114,23 +140,59 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       );
 
-  Widget buildAbout() => Container(
+  Widget buildPhone() => Container(
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'About',
+              'Phone Number',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             Text(
-              'Long ago, the four nations lived together in harmony. Then, everything changed when the Fire Nation attacked. Only the Avatar, master of all four elements, could stop them, but when the world needed him most, he vanished. A hundred years passed and my brother and I discovered the new Avatar, an airbender named Aang.',
+              userPhone,
               style: TextStyle(fontSize: 16, height: 1.4),
             ),
           ],
         ),
       );
+
+  Widget buildAadhar() => Container(
+    padding: EdgeInsets.symmetric(horizontal: 48),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Aadhar Number',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          userAadhar,
+          style: TextStyle(fontSize: 16, height: 1.4),
+        ),
+      ],
+    ),
+  );
+
+  Widget buildRegion() => Container(
+    padding: EdgeInsets.symmetric(horizontal: 48),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Region',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          userRegion,
+          style: TextStyle(fontSize: 16, height: 1.4),
+        ),
+      ],
+    ),
+  );
 }
 
 // ElevatedButton(
