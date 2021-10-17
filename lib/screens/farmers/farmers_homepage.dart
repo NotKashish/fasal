@@ -15,15 +15,12 @@ class FarmersHomepage extends StatefulWidget {
 }
 
 class _FarmersHomepageState extends State<FarmersHomepage> {
-  void getData() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    print(_pref.get(UID_KEY));
-  }
+
 
   @override
   void initState() {
     // TODO: implement initState
-    getData();
+
     super.initState();
   }
 

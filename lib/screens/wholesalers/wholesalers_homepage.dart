@@ -1,5 +1,7 @@
 import 'package:fasal/constants/constants.dart';
+import 'package:fasal/constants/keys.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'search_farmers.dart';
 import 'view_farmers.dart';
@@ -21,6 +23,13 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
     ViewFarmers(),
     ProfilePage(),
   ];
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

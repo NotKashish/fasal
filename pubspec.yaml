@@ -30,7 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.0
   shared_preferences: ^2.0.8
-  
+  restcountries:
+
+
   # firebase
   firebase_core: ^1.6.0
   firebase_analytics: ^8.3.2

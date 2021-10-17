@@ -11,3 +11,4 @@ const Color mayGreen = Color(0xff6A994E);
 const Color androidGreen = Color(0xffA7C957);
 const Color eggShell = Color(0xffF2E8CF);
 const Color deepChestnut = Color(0xffBC4749);
+const Color lightGrey = Color.fromRGBO(239,239,239, 1);

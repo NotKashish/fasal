@@ -37,13 +37,13 @@ class ShowHomePage extends StatelessWidget {
               print(data);
               Farmer farmer = farmerFromMap(data);
               setValues(farmer.uid, farmer.name, farmer.email, farmer.phoneNo,
-                  farmer.aadharNo);
+                  farmer.aadharNo, farmer.region);
               return FarmersHomepage();
             }
             if (data['type'] == 'wholesaler') {
               Wholesaler wholesaler = wholesalerFromMap(data);
               setValues(wholesaler.uid, wholesaler.name, wholesaler.email,
-                  wholesaler.phoneNo, wholesaler.aadharNo);
+                  wholesaler.phoneNo, wholesaler.aadharNo, wholesaler.region);
               return WholesalerHomepage();
             }
           }
