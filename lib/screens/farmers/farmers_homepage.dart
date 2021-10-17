@@ -51,7 +51,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
             backgroundColor: hunterGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.upload),
+            icon: Icon(Icons.upload_rounded),
             label: 'Upload',
             backgroundColor: mayGreen,
           ),
