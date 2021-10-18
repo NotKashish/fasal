@@ -3,6 +3,8 @@ import 'package:fasal/helper/shared_preferences_helper.dart';
 import 'package:fasal/models/farmer.dart';
 import 'package:fasal/services/database_services.dart';
 import 'package:fasal/services/storage_services.dart';
+import 'package:fasal/widgets/drawer.dart';
+import 'package:fasal/widgets/postCard.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -12,6 +14,7 @@ import 'dart:io';
 import 'package:image/image.dart' as Im;
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:fasal/models/post.dart';
 
 class UploadPage extends StatefulWidget {
 
@@ -80,19 +83,23 @@ class _UploadPageState extends State<UploadPage> {
   }
 
   Widget buildSplashScreen(){
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          //SvgPicture.asset('assets/images/upload.svg', height: 260),
-          Container(
-            padding: EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-              onPressed: () => selectImage(context),
-              child: Text("Select an Image"),
-            ),
-          )
-        ],
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //SvgPicture.asset('assets/images/upload.svg', height: 260),
+              Container(
+                padding: EdgeInsets.only(top: 20),
+                child: ElevatedButton(
+                  onPressed: () => selectImage(context),
+                  child: Text("Select an Image"),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -156,64 +163,66 @@ class _UploadPageState extends State<UploadPage> {
   }
 
   Widget buildUploadForm(){
-    return ListView(
-      children: [
-        isUploading ? LinearProgressIndicator() : Text(""),
-        Container(
-          height: 220.0,
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: Center(
-            child: AspectRatio(
-              aspectRatio: 16/9,
-              child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: FileImage(file),
-                    )
+    return Scaffold(
+      body: ListView(
+        children: [
+          isUploading ? LinearProgressIndicator() : Text(""),
+          Container(
+            height: 220.0,
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: 16/9,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: FileImage(file),
+                      )
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        ListTile(
-          leading: Icon(Icons.title),
-          title: Container(
-            width: 250.0,
-            child: TextField(
-              controller: postTitleController,
-              decoration: InputDecoration(
-                  hintText: "Enter Title",
-                  border: InputBorder.none
+          SizedBox(
+            height: 10,
+          ),
+          ListTile(
+            leading: Icon(Icons.title),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                controller: postTitleController,
+                decoration: InputDecoration(
+                    hintText: "Enter Title",
+                    border: InputBorder.none
+                ),
               ),
             ),
           ),
-        ),
-        Divider(),
-        ListTile(
-          leading: Icon(Icons.menu_book_outlined),
-          title: Container(
-            width: 250.0,
-            child: TextField(
-              controller: postDescriptionController,
-              decoration: InputDecoration(
-                  hintText: "Enter Description",
-                  border: InputBorder.none
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.menu_book_outlined),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                controller: postDescriptionController,
+                decoration: InputDecoration(
+                    hintText: "Enter Description",
+                    border: InputBorder.none
+                ),
               ),
             ),
           ),
-        ),
-        Divider(),
-        ListTile(
-          title: ElevatedButton(
-            child: Text("POST"),
-            onPressed: isUploading ? null : () => handleSubmit(),
-          ),
-        )
-      ],
+          Divider(),
+          ListTile(
+            title: ElevatedButton(
+              child: Text("POST"),
+              onPressed: isUploading ? null : () => handleSubmit(),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -232,6 +241,31 @@ class UploadProduce extends StatefulWidget {
 }
 
 class _UploadProduceState extends State<UploadProduce> {
+
+  String userId = "";
+  late Future<List> postsListFuture;
+  List postsList = [];
+  DatabaseService ds = DatabaseService();
+
+  getData() async {
+    getUidFromPrefs().then((value){
+      setState(() {
+        userId = value!;
+      });
+      print("userId: $userId");
+      setState(() {
+        postsListFuture = ds.getPostsByUserId(userId);
+      });
+    });
+  }
+  
+  @override
+  void initState() {
+    getData();
+    print("userId: $userId");
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -239,19 +273,43 @@ class _UploadProduceState extends State<UploadProduce> {
         title: Text('Upload Produce'),
         backgroundColor: mayGreen,
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff of course'),
-            ],
-          ),
+      drawer: MyDrawer(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return UploadPage();
+          }));
+        },
+      ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: FutureBuilder(
+          future: postsListFuture,
+          builder: (context, AsyncSnapshot<List> snapshot){
+            print("snapshot in FB: ${snapshot.data}");
+            if (snapshot.connectionState == ConnectionState.done && snapshot.data!=null){
+              return Container(
+                height: MediaQuery.of(context).size.height,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index){
+                      print("snapshot");
+                      return PostCard(post: snapshot.data![index]);
+                    }
+                ),
+              );
+            }
+            else{
+              return Center(
+                child: Text("No Posts yet"),
+              );
+            }
+          },
         ),
-      ),
-      body: Center(
-        child: UploadPage(),
-      ),
+      )
     );
   }
 }

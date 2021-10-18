@@ -22,6 +22,7 @@ class Post{
 
   factory Post.fromDocument(DocumentSnapshot doc){
     Map postData = doc.data() as Map;
+    print("inside post model: $postData");
     return Post(
         postId: postData['postId'],
       postTitle: postData['postTitle'],
