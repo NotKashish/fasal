@@ -43,21 +43,6 @@ class _SignUpState extends State<SignUp> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: eggShell,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black87,
-          ),
-          backgroundColor: androidGreen,
-          title: Text(
-            'Fasal',
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 32,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          centerTitle: true,
-        ),
         body: SingleChildScrollView(
           child: Column(children: [
             // SizedBox(height: 5),
