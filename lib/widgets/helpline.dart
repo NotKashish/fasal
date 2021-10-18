@@ -14,21 +14,13 @@ class Helpline extends StatefulWidget {
   _HelplineState createState() => _HelplineState();
 }
 
-int currentIndex = 0;
-final screens = [
-  FarmersChat(),
-  UploadProduce(),
-  ViewWholesalers(),
-  ProfilePage(),
-];
-
 class _HelplineState extends State<Helpline> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: hunterGreen,
-        title: Text('Kissan helpline numbers'),
+        title: Text('Kisan helpline numbers'),
       ),
       drawer: MyDrawer(),
       body: Padding(
@@ -39,37 +31,5 @@ class _HelplineState extends State<Helpline> {
         ),
       ),
     );
-    // body: IndexedStack(
-    //   index: currentIndex,
-    //   children: screens,
-    // ),
-    // bottomNavigationBar: BottomNavigationBar(
-    //   currentIndex: currentIndex,
-    //   onTap: (index) => setState(() => currentIndex = index),
-    //   showUnselectedLabels: false,
-    //   iconSize: 28,
-    //   items: [
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.chat),
-    //       label: 'Chat',
-    //       backgroundColor: hunterGreen,
-    //     ),
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.upload),
-    //       label: 'Upload',
-    //       backgroundColor: mayGreen,
-    //     ),
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.list),
-    //       label: 'View',
-    //       backgroundColor: oliveGreen,
-    //     ),
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.person),
-    //       label: 'Profile',
-    //       backgroundColor: androidGreen,
-    //     ),
-    //   ],
-    // ),
   }
 }

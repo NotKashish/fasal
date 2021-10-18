@@ -14,60 +14,61 @@ class Prevention extends StatefulWidget {
   _PreventionState createState() => _PreventionState();
 }
 
-int currentIndex = 0;
-final screens = [
-  FarmersChat(),
-  UploadProduce(),
-  ViewWholesalers(),
-  ProfilePage(),
-];
+// int currentIndex = 0;
+// final screens = [
+//   FarmersChat(),
+//   UploadProduce(),
+//   ViewWholesalers(),
+//   ProfilePage(),
+// ];
 
 class _PreventionState extends State<Prevention> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: eggShell,
       appBar: AppBar(
         backgroundColor: hunterGreen,
-        title: Text('Tips to stay fruits fresh'),
+        title: Text('Tips to keep fruits fresh'),
       ),
       drawer: MyDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-        child: Text(
-            'Don’t refrigerate.Store in a cool, dark place with relatively high humidity.Allow air circulation.Keep separate from onions, bananas, and other ethylene-producing items.Whether they’re star'),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image(
+              fit: BoxFit.fill,
+              // height: 200,
+              // width: 200,
+              image: AssetImage('assets/images/93591.jpg'),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Card(
+              shadowColor: Colors.black87,
+              elevation: 5.0,
+              child: Container(
+                padding: EdgeInsets.all(5.0),
+                child: Text(
+                  '1. Don’t refrigerate.\n2. Store in a cool, dark place with relatively high humidity.\n3. Allow air circulation.'
+                  '\n4. Keep separate from onions, bananas, and other ethylene-producing items.',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              color: eggShell,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ],
+        ),
       ),
-      // body: IndexedStack(
-      //   index: currentIndex,
-      //   children: screens,
-      // ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: currentIndex,
-      //   onTap: (index) => setState(() => currentIndex = index),
-      //   showUnselectedLabels: false,
-      //   iconSize: 28,
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.chat),
-      //       label: 'Chat',
-      //       backgroundColor: hunterGreen,
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.upload),
-      //       label: 'Upload',
-      //       backgroundColor: mayGreen,
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.list),
-      //       label: 'View',
-      //       backgroundColor: oliveGreen,
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person),
-      //       label: 'Profile',
-      //       backgroundColor: androidGreen,
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
+// 'Don’t refrigerate.Store in a cool, dark place with relatively high humidity.Allow air circulation.
+// Keep separate from onions, bananas, and other ethylene-producing items.Whether they’re star'

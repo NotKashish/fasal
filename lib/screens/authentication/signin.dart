@@ -39,7 +39,7 @@ class SignIn extends StatelessWidget {
                 fit: BoxFit.fill,
                 // height: 200,
                 // width: 200,
-                image: AssetImage('assets/31110.jpg'),
+                image: AssetImage('assets/images/31110.jpg'),
               ),
               const SizedBox(height: 35),
               CustomTextField(
