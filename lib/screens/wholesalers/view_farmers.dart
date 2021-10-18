@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fasal/constants/constants.dart';
+import 'package:fasal/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ViewFarmers extends StatefulWidget {
@@ -34,16 +35,7 @@ class _ViewFarmersState extends State<ViewFarmers> {
         title: Text('View Farmers'),
         backgroundColor: oliveGreen,
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff of course'),
-            ],
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       body: Column(
         children: [
           DropdownButton<String>(
@@ -58,8 +50,14 @@ class _ViewFarmersState extends State<ViewFarmers> {
                 region = newValue!;
               });
             },
-            items: <String>['All', 'Maharashtra', 'Gujarat', 'Tamil Nadu', 'Rajasthan', 'Goa']
-                .map<DropdownMenuItem<String>>((String value) {
+            items: <String>[
+              'All',
+              'Maharashtra',
+              'Gujarat',
+              'Tamil Nadu',
+              'Rajasthan',
+              'Goa'
+            ].map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -74,16 +72,16 @@ class _ViewFarmersState extends State<ViewFarmers> {
                   child: Text('Loading...'),
                 );
               } else {
-                  for(var object in snapshot.data) {
-                    if(region != "All") {
-                      if(object.data()['region'] == region) {
-                        farmers.add(object.data());
-                        print(object.data()['name']);
-                      }
-                    } else {
+                for (var object in snapshot.data) {
+                  if (region != "All") {
+                    if (object.data()['region'] == region) {
                       farmers.add(object.data());
+                      print(object.data()['name']);
                     }
+                  } else {
+                    farmers.add(object.data());
                   }
+                }
                 return SingleChildScrollView(
                   child: ListView.builder(
                     itemCount: farmers.length,

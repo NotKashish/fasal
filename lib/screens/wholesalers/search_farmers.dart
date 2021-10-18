@@ -1,4 +1,5 @@
 import 'package:fasal/constants/constants.dart';
+import 'package:fasal/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class SearchFarmers extends StatefulWidget {
@@ -16,16 +17,7 @@ class _SearchFarmersState extends State<SearchFarmers> {
         title: Text('Search'),
         backgroundColor: mayGreen,
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff of course'),
-            ],
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       body: Center(
         child: Text('hame'),
       ),

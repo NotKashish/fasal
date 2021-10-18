@@ -27,7 +27,7 @@ class _PriceState extends State<Price> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: hunterGreen,
+        backgroundColor: androidGreen,
         title: Text('Market Prices'),
       ),
       // drawer: MyDrawer(),

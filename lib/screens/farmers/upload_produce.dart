@@ -3,6 +3,7 @@ import 'package:fasal/helper/shared_preferences_helper.dart';
 import 'package:fasal/models/farmer.dart';
 import 'package:fasal/services/database_services.dart';
 import 'package:fasal/services/storage_services.dart';
+import 'package:fasal/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -14,14 +15,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class UploadPage extends StatefulWidget {
-
   @override
   _UploadPageState createState() => _UploadPageState();
 }
 
 class _UploadPageState extends State<UploadPage> {
   @override
-
   TextEditingController postTitleController = TextEditingController();
   TextEditingController postDescriptionController = TextEditingController();
   dynamic file;
@@ -32,13 +31,14 @@ class _UploadPageState extends State<UploadPage> {
   StorageService ss = StorageService();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
   handleTakePhoto() async {
     Navigator.pop(context);
-    var pickedImage = await picker.getImage(source: ImageSource.camera, maxWidth: 960, maxHeight: 675);
+    var pickedImage = await picker.getImage(
+        source: ImageSource.camera, maxWidth: 960, maxHeight: 675);
     File file = File(pickedImage!.path);
     setState(() {
       this.file = file;
@@ -47,17 +47,18 @@ class _UploadPageState extends State<UploadPage> {
 
   handleChooseFromGallery() async {
     Navigator.pop(context);
-    var pickedImage = await picker.getImage(source: ImageSource.gallery, maxWidth: 960, maxHeight: 675);
+    var pickedImage = await picker.getImage(
+        source: ImageSource.gallery, maxWidth: 960, maxHeight: 675);
     File file = File(pickedImage!.path);
     setState(() {
       this.file = file;
     });
   }
 
-  selectImage(BuildContext parentContext){
+  selectImage(BuildContext parentContext) {
     return showDialog(
         context: parentContext,
-        builder: (context){
+        builder: (context) {
           return SimpleDialog(
             title: Text("Create Post"),
             children: [
@@ -71,15 +72,14 @@ class _UploadPageState extends State<UploadPage> {
               ),
               SimpleDialogOption(
                 child: Text("Cancel"),
-                onPressed: ()=>Navigator.pop(context),
+                onPressed: () => Navigator.pop(context),
               )
             ],
           );
-        }
-    );
+        });
   }
 
-  Widget buildSplashScreen(){
+  Widget buildSplashScreen() {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +97,7 @@ class _UploadPageState extends State<UploadPage> {
     );
   }
 
-  clearImage(){
+  clearImage() {
     setState(() {
       //file = null;
     });
@@ -107,19 +107,24 @@ class _UploadPageState extends State<UploadPage> {
     var tempDir = await getTemporaryDirectory();
     var path = tempDir.path;
     Im.Image imageFile = Im.decodeImage(file.readAsBytesSync())!;
-    File compressedFile = File('$path/img_$postId.jpg')..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
+    File compressedFile = File('$path/img_$postId.jpg')
+      ..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
     setState(() {
       file = compressedFile;
     });
   }
 
   Future<String> uploadImage(File file) async {
-    TaskSnapshot snapshot = await ss.storageRef.child("post_$postId.jpg").putFile(file);
+    TaskSnapshot snapshot =
+        await ss.storageRef.child("post_$postId.jpg").putFile(file);
     String downloadUrl = await snapshot.ref.getDownloadURL();
     return downloadUrl;
   }
 
-  createPostInFirestore({required String mediaUrl, required String postTitle, required String postDescription}) async {
+  createPostInFirestore(
+      {required String mediaUrl,
+      required String postTitle,
+      required String postDescription}) async {
     String farmerUid = (await getUidFromPrefs())!;
     ds.postsRef.doc(postId).set({
       "postId": postId,
@@ -144,8 +149,7 @@ class _UploadPageState extends State<UploadPage> {
     createPostInFirestore(
         mediaUrl: mediaUrl,
         postDescription: postDescriptionController.text,
-        postTitle: postTitleController.text
-    );
+        postTitle: postTitleController.text);
     postTitleController.clear();
     postDescriptionController.clear();
     setState(() {
@@ -155,7 +159,7 @@ class _UploadPageState extends State<UploadPage> {
     });
   }
 
-  Widget buildUploadForm(){
+  Widget buildUploadForm() {
     return ListView(
       children: [
         isUploading ? LinearProgressIndicator() : Text(""),
@@ -164,14 +168,13 @@ class _UploadPageState extends State<UploadPage> {
           width: MediaQuery.of(context).size.width * 0.8,
           child: Center(
             child: AspectRatio(
-              aspectRatio: 16/9,
+              aspectRatio: 16 / 9,
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: FileImage(file),
-                    )
-                ),
+                  fit: BoxFit.cover,
+                  image: FileImage(file),
+                )),
               ),
             ),
           ),
@@ -186,9 +189,7 @@ class _UploadPageState extends State<UploadPage> {
             child: TextField(
               controller: postTitleController,
               decoration: InputDecoration(
-                  hintText: "Enter Title",
-                  border: InputBorder.none
-              ),
+                  hintText: "Enter Title", border: InputBorder.none),
             ),
           ),
         ),
@@ -200,9 +201,7 @@ class _UploadPageState extends State<UploadPage> {
             child: TextField(
               controller: postDescriptionController,
               decoration: InputDecoration(
-                  hintText: "Enter Description",
-                  border: InputBorder.none
-              ),
+                  hintText: "Enter Description", border: InputBorder.none),
             ),
           ),
         ),
@@ -223,7 +222,6 @@ class _UploadPageState extends State<UploadPage> {
   }
 }
 
-
 class UploadProduce extends StatefulWidget {
   const UploadProduce({Key? key}) : super(key: key);
 
@@ -239,16 +237,7 @@ class _UploadProduceState extends State<UploadProduce> {
         title: Text('Upload Produce'),
         backgroundColor: mayGreen,
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff of course'),
-            ],
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       body: Center(
         child: UploadPage(),
       ),
