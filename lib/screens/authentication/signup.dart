@@ -156,8 +156,9 @@ class _SignUpState extends State<SignUp> {
             //SIGN UP BUTTON
             InkWell(
               onTap: () {
-                print(region);
-                context.read<AuthenticationService>().signup(
+                context
+                    .read<AuthenticationService>()
+                    .signup(
                       emailController.text.trim(),
                       passwordController.text.trim(),
                       type,
@@ -166,6 +167,10 @@ class _SignUpState extends State<SignUp> {
                       aadharController.text.trim(),
                       region,
                     );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) => SignIn()),
+                );
               },
               child: new Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
