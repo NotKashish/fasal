@@ -14,17 +14,16 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-
   String userName = "";
   String userEmail = "";
 
   getData() async {
-    getNameFromPrefs().then((value){
+    getNameFromPrefs().then((value) {
       setState(() {
         userName = value!;
       });
     });
-    getEmailFromPrefs().then((value){
+    getEmailFromPrefs().then((value) {
       setState(() {
         userEmail = value!;
       });
@@ -50,7 +49,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ListTile(
             onTap: () {
               // Navigator.pop(context);
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Price(),
@@ -62,7 +61,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Helpline(),
@@ -74,7 +73,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Prevention(),
@@ -86,7 +85,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => About(),

@@ -22,7 +22,7 @@ class _HelplineState extends State<Helpline> {
         backgroundColor: hunterGreen,
         title: Text('Kisan helpline numbers'),
       ),
-      drawer: MyDrawer(),
+      // drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Text(

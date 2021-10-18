@@ -28,10 +28,10 @@ class _PreventionState extends State<Prevention> {
     return Scaffold(
       backgroundColor: eggShell,
       appBar: AppBar(
-        backgroundColor: hunterGreen,
+        backgroundColor: androidGreen,
         title: Text('Tips to keep fruits fresh'),
       ),
-      drawer: MyDrawer(),
+      // drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,10 +51,12 @@ class _PreventionState extends State<Prevention> {
               child: Container(
                 padding: EdgeInsets.all(5.0),
                 child: Text(
-                  '1. Don’t refrigerate.\n2. Store in a cool, dark place with relatively high humidity.\n3. Allow air circulation.'
-                  '\n4. Keep separate from onions, bananas, and other ethylene-producing items.',
+                  '1. Don’t refrigerate.'
+                  '\n\n2. Store in a cool, dark place with relatively high humidity.'
+                  '\n\n3. Allow air circulation.'
+                  '\n\n4. Keep separate from onions, bananas, and other ethylene-producing items.',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 21.0,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
