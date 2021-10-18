@@ -17,14 +17,12 @@ import 'package:uuid/uuid.dart';
 import 'package:fasal/models/post.dart';
 
 class UploadPage extends StatefulWidget {
-
   @override
   _UploadPageState createState() => _UploadPageState();
 }
 
 class _UploadPageState extends State<UploadPage> {
   @override
-
   TextEditingController postTitleController = TextEditingController();
   TextEditingController postDescriptionController = TextEditingController();
   dynamic file;
@@ -35,13 +33,14 @@ class _UploadPageState extends State<UploadPage> {
   StorageService ss = StorageService();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
   handleTakePhoto() async {
     Navigator.pop(context);
-    var pickedImage = await picker.getImage(source: ImageSource.camera, maxWidth: 960, maxHeight: 675);
+    var pickedImage = await picker.getImage(
+        source: ImageSource.camera, maxWidth: 960, maxHeight: 675);
     File file = File(pickedImage!.path);
     setState(() {
       this.file = file;
@@ -50,17 +49,18 @@ class _UploadPageState extends State<UploadPage> {
 
   handleChooseFromGallery() async {
     Navigator.pop(context);
-    var pickedImage = await picker.getImage(source: ImageSource.gallery, maxWidth: 960, maxHeight: 675);
+    var pickedImage = await picker.getImage(
+        source: ImageSource.gallery, maxWidth: 960, maxHeight: 675);
     File file = File(pickedImage!.path);
     setState(() {
       this.file = file;
     });
   }
 
-  selectImage(BuildContext parentContext){
+  selectImage(BuildContext parentContext) {
     return showDialog(
         context: parentContext,
-        builder: (context){
+        builder: (context) {
           return SimpleDialog(
             title: Text("Create Post"),
             children: [
@@ -74,12 +74,11 @@ class _UploadPageState extends State<UploadPage> {
               ),
               SimpleDialogOption(
                 child: Text("Cancel"),
-                onPressed: ()=>Navigator.pop(context),
+                onPressed: () => Navigator.pop(context),
               )
             ],
           );
-        }
-    );
+        });
   }
 
   Widget buildSplashScreen(){
@@ -104,7 +103,7 @@ class _UploadPageState extends State<UploadPage> {
     );
   }
 
-  clearImage(){
+  clearImage() {
     setState(() {
       //file = null;
     });
@@ -114,19 +113,24 @@ class _UploadPageState extends State<UploadPage> {
     var tempDir = await getTemporaryDirectory();
     var path = tempDir.path;
     Im.Image imageFile = Im.decodeImage(file.readAsBytesSync())!;
-    File compressedFile = File('$path/img_$postId.jpg')..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
+    File compressedFile = File('$path/img_$postId.jpg')
+      ..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
     setState(() {
       file = compressedFile;
     });
   }
 
   Future<String> uploadImage(File file) async {
-    TaskSnapshot snapshot = await ss.storageRef.child("post_$postId.jpg").putFile(file);
+    TaskSnapshot snapshot =
+        await ss.storageRef.child("post_$postId.jpg").putFile(file);
     String downloadUrl = await snapshot.ref.getDownloadURL();
     return downloadUrl;
   }
 
-  createPostInFirestore({required String mediaUrl, required String postTitle, required String postDescription}) async {
+  createPostInFirestore(
+      {required String mediaUrl,
+      required String postTitle,
+      required String postDescription}) async {
     String farmerUid = (await getUidFromPrefs())!;
     ds.postsRef.doc(postId).set({
       "postId": postId,
@@ -151,8 +155,7 @@ class _UploadPageState extends State<UploadPage> {
     createPostInFirestore(
         mediaUrl: mediaUrl,
         postDescription: postDescriptionController.text,
-        postTitle: postTitleController.text
-    );
+        postTitle: postTitleController.text);
     postTitleController.clear();
     postDescriptionController.clear();
     setState(() {
@@ -231,7 +234,6 @@ class _UploadPageState extends State<UploadPage> {
     return file == null ? buildSplashScreen() : buildUploadForm();
   }
 }
-
 
 class UploadProduce extends StatefulWidget {
   const UploadProduce({Key? key}) : super(key: key);

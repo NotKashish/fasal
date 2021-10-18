@@ -16,18 +16,6 @@ class SignIn extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: eggShell,
-        appBar: AppBar(
-          backgroundColor: androidGreen,
-          title: Text(
-            'Fasal',
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 32,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          centerTitle: true,
-        ),
         body: SingleChildScrollView(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -19,7 +19,7 @@ class _FarmersChatState extends State<FarmersChat> {
       ),
       drawer: MyDrawer(),
       body: Center(
-        child: Text('Did'),
+        child: Text('This is the chat screen.'),
       ),
     );
   }
