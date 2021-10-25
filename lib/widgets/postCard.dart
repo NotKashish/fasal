@@ -18,7 +18,7 @@ class _PostCardState extends State<PostCard> {
     return Container(
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.only(left: 10),
-      height: 552,
+      height: 352,
       width: 368,
       decoration: BoxDecoration(
           color: white,
@@ -45,21 +45,21 @@ class _PostCardState extends State<PostCard> {
                   ),
                   Text(
                     this.widget.post.postTitle,
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     this.widget.post.description,
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.caption,
                   ),
                   Spacer(),
                   Container(
                     padding: EdgeInsets.only(bottom: 20),
                     child: Text(
                       '40.0',
-                      style: Theme.of(context).textTheme.headline3,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   )
                 ],
@@ -89,7 +89,7 @@ class _PostCardState extends State<PostCard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("CONTACT", style: Theme.of(context).textTheme.headline2,),
+                    Text("CONTACT", style: Theme.of(context).textTheme.headline6,),
                     Spacer(),
                     IconButton(
                         icon: Icon(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fasal/constants/constants.dart';
 import 'package:fasal/helper/shared_preferences_helper.dart';
 import 'package:fasal/models/farmer.dart';
@@ -248,6 +249,7 @@ class _UploadProduceState extends State<UploadProduce> {
   late Future<List> postsListFuture;
   List postsList = [];
   DatabaseService ds = DatabaseService();
+  late CollectionReference postsReference;
 
   getData() async {
     getUidFromPrefs().then((value){
@@ -260,11 +262,21 @@ class _UploadProduceState extends State<UploadProduce> {
       });
     });
   }
+
+  Future getPosts() async {
+    String? uid = "rPmtQmrmelg8EYDFXX9b2jGn8Jz2";
+    uid = await getUidFromPrefs();
+    print("uid: $uid");
+    QuerySnapshot qn =
+    await postsReference.where("farmerId", isEqualTo: uid).get();
+    return qn.docs;
+  }
   
   @override
   void initState() {
     getData();
     print("userId: $userId");
+    postsReference = FirebaseFirestore.instance.collection('posts');
     super.initState();
   }
   
@@ -288,18 +300,24 @@ class _UploadProduceState extends State<UploadProduce> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: FutureBuilder(
-          future: postsListFuture,
-          builder: (context, AsyncSnapshot<List> snapshot){
+          future: getPosts(),
+          builder: (context, AsyncSnapshot snapshot){
             print("snapshot in FB: ${snapshot.data}");
-            if (snapshot.connectionState == ConnectionState.done && snapshot.data!=null){
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            else if (snapshot.connectionState == ConnectionState.done && snapshot.data!=null){
               return Container(
                 height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.vertical,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index){
-                      print("snapshot");
-                      return PostCard(post: snapshot.data![index]);
+                      print("snapshot: ${snapshot.data[index]}");
+                      //return Container(child: Text("text"),);
+                      return PostCard(post: Post.fromDocument(snapshot.data![index]));
                     }
                 ),
               );

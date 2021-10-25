@@ -27,7 +27,7 @@ class Post{
         postId: postData['postId'],
       postTitle: postData['postTitle'],
       farmerId: postData['farmerId'],
-      description: postData['description'],
+      description: postData['postDescription'],
       mediaUrl: postData['mediaUrl']
     );
   }
