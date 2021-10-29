@@ -27,6 +27,15 @@ class _AboutState extends State<About> {
             crossAxisAlignment: CrossAxisAlignment.start,
             // mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              // Image(
+              //   fit: BoxFit.fill,
+              //   // height: 200,
+              //   // width: 200,
+              //   image: AssetImage('assets/images/20945391.jpg'),
+              // ),
+              SizedBox(
+                height: 10.0,
+              ),
               Text(
                 'FASAL - TE Sem V Mini-Project',
                 style: TextStyle(

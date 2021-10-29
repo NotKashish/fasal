@@ -18,12 +18,11 @@ class WholesalerHomepage extends StatefulWidget {
 class _WholesalerHomepageState extends State<WholesalerHomepage> {
   int currentIndex = 0;
   final screens = [
-    WholesalersChat(),
-    SearchFarmers(),
     ViewFarmers(),
+    SearchFarmers(),
+    WholesalersChat(),
     ProfilePage(),
   ];
-
 
   @override
   void initState() {
@@ -44,20 +43,26 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
         showUnselectedLabels: false,
         iconSize: 28,
         items: [
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.chat),
+          //   label: 'Chat',
+          //   backgroundColor: hunterGreen,
+          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-            backgroundColor: hunterGreen,
+            icon: Icon(Icons.list),
+            label: 'View',
+            backgroundColor: oliveGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Search',
             backgroundColor: mayGreen,
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'View',
-            backgroundColor: oliveGreen,
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+            backgroundColor: hunterGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

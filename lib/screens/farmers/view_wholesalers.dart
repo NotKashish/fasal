@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fasal/constants/constants.dart';
+import 'package:fasal/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ViewWholesalers extends StatefulWidget {
@@ -31,16 +32,7 @@ class _ViewWholesalersState extends State<ViewWholesalers> {
         title: Text('View Wholesalers'),
         backgroundColor: oliveGreen,
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff of course'),
-            ],
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       body: FutureBuilder(
         future: getPosts(),
         builder: (BuildContext _, AsyncSnapshot snapshot) {

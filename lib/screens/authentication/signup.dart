@@ -43,21 +43,6 @@ class _SignUpState extends State<SignUp> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: eggShell,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black87,
-          ),
-          backgroundColor: androidGreen,
-          title: Text(
-            'Fasal',
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 32,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          centerTitle: true,
-        ),
         body: SingleChildScrollView(
           child: Column(children: [
             // SizedBox(height: 5),
@@ -156,8 +141,9 @@ class _SignUpState extends State<SignUp> {
             //SIGN UP BUTTON
             InkWell(
               onTap: () {
-                print(region);
-                context.read<AuthenticationService>().signup(
+                context
+                    .read<AuthenticationService>()
+                    .signup(
                       emailController.text.trim(),
                       passwordController.text.trim(),
                       type,
@@ -166,6 +152,10 @@ class _SignUpState extends State<SignUp> {
                       aadharController.text.trim(),
                       region,
                     );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) => SignIn()),
+                );
               },
               child: new Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),

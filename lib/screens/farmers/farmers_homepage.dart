@@ -15,8 +15,6 @@ class FarmersHomepage extends StatefulWidget {
 }
 
 class _FarmersHomepageState extends State<FarmersHomepage> {
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -26,9 +24,9 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
 
   int currentIndex = 0;
   final screens = [
-    FarmersChat(),
-    UploadProduce(),
     ViewWholesalers(),
+    UploadProduce(),
+    FarmersChat(),
     ProfilePage(),
   ];
 
@@ -45,20 +43,26 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
         showUnselectedLabels: false,
         iconSize: 28,
         items: [
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.chat),
+          //   label: 'Chat',
+          //   backgroundColor: hunterGreen,
+          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-            backgroundColor: hunterGreen,
+            icon: Icon(Icons.list),
+            label: 'View',
+            backgroundColor: oliveGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.upload_rounded),
             label: 'Upload',
             backgroundColor: mayGreen,
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'View',
-            backgroundColor: oliveGreen,
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+            backgroundColor: hunterGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

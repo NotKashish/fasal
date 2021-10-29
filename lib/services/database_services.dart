@@ -12,15 +12,19 @@ class DatabaseService{
     return doc;
   }
 
-  Future<List> getAllPosts(String userId) async {
-    QuerySnapshot snapshot = await postsRef.where('userId',isEqualTo: userId).get();
+  Future<List> getPostsByUserId(String userId) async {
+    print("method called with user id: $userId");
+    QuerySnapshot snapshot = await postsRef.where('farmerId',isEqualTo: userId).get();
+    print("snapshot obtained: ${snapshot.docs}");
     List<Post> postsList = [];
     snapshot.docs.forEach((doc) {
       Map data = doc.data() as Map;
+      print("post data: $data");
       postsList.add(
           Post.fromDocument(doc)
       );
     });
+    print("final postsList: $postsList");
     return postsList;
   }
 

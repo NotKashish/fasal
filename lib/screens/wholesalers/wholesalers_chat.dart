@@ -1,4 +1,5 @@
 import 'package:fasal/constants/constants.dart';
+import 'package:fasal/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class WholesalersChat extends StatefulWidget {
@@ -16,20 +17,11 @@ class _WholesalersChatState extends State<WholesalersChat> {
         backgroundColor: hunterGreen,
         title: Text('Chat'),
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Helpful stuff ofcourse'),
-            ],
-          ),
-        ),
-      ),
+      drawer: MyDrawer(),
       body: Center(
         child: Column(
           children: [
-            Text('hello'),
+            Text('This is the Chat screen.'),
           ],
         ),
       ),

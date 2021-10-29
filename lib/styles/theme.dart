@@ -21,6 +21,16 @@ MaterialColor createMaterialColor(Color color) {
   return MaterialColor(color.value, swatch);
 }
 
+BoxShadow containerShadow = BoxShadow(
+  color: Colors.grey,
+  offset: const Offset(
+    0.0,
+    0.0,
+  ),
+  blurRadius: 7.0,
+  spreadRadius: 2.0,
+);
+
 ThemeData mainTheme = ThemeData(
   primarySwatch: createMaterialColor(deepChestnut),
   scaffoldBackgroundColor: white,
