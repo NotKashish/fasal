@@ -96,6 +96,12 @@ var fruits = <Fruits>[
     weight: '1 KG',
     price: '60.00',
   ),
+  Fruits(fruitName: 'Black Grape (Karuppu Thiratchai)', weight: '1 KG', price: '80.00'),
+  Fruits(fruitName: 'Cherry (Cherry Palam)', weight: '1 KG', price: '600.00'),
+  Fruits(fruitName: 'Coconut (Thengai)', weight: '1 KG', price: '30.00'),
+  Fruits(fruitName: 'Gooseberry (Nellikai)', weight: '1 KG', price: '220.00'),
+  Fruits(fruitName: 'Date (Pericham Palam)', weight: '1 KG', price: '400.00'),
+  Fruits(fruitName: 'Fig (Athipalam)', weight: '1 KG', price: '180.00')
 ];
 // Text(
 // 'Apple (Apple)	1 Kg	220.00 \nAvocado (Avocado Palam)	1 Kg	180.00\nBlack Grape (Karuppu Thiratchai)	1 Kg	80.00'

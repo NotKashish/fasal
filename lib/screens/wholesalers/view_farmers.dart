@@ -100,7 +100,7 @@ class _ViewFarmersState extends State<ViewFarmers> {
                             child: GestureDetector(
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  return ViewProduce(farmerUid: farmers[index]["id"]);
+                                  return ViewProduce(farmerUid: farmers[index]["uid"]);
                                 }));
                               },
                               child: Card(

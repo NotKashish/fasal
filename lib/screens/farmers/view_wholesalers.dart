@@ -65,6 +65,9 @@ class _ViewWholesalersState extends State<ViewWholesalers> {
                               fontSize: 15.0,
                             ),
                           ),
+                          subtitle: Text(
+                            snapshot.data[index].data()["phone_no"],
+                          ),
                           onTap: (null),
                           leading: Icon(
                             Icons.format_list_numbered,

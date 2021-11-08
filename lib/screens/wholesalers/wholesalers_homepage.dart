@@ -19,7 +19,6 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
   int currentIndex = 0;
   final screens = [
     ViewFarmers(),
-    SearchFarmers(),
     WholesalersChat(),
     ProfilePage(),
   ];
@@ -53,12 +52,6 @@ class _WholesalerHomepageState extends State<WholesalerHomepage> {
             label: 'View',
             backgroundColor: oliveGreen,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-            backgroundColor: mayGreen,
-          ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Chat',
