@@ -59,7 +59,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
   }
 
   buildFarmerHomePage() {
-    Scaffold(
+    return Scaffold(
       body: IndexedStack(
         index: currentIndex,
         children: screens,
