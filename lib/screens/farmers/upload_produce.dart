@@ -133,12 +133,15 @@ class _UploadPageState extends State<UploadPage> {
       required String postTitle,
       required String postDescription}) async {
     String farmerUid = (await getUidFromPrefs())!;
+    String farmerNo = (await getPhoneFromPrefs())!;
     ds.postsRef.doc(postId).set({
       "postId": postId,
       "farmerId": farmerUid,
+      "farmerNo": farmerNo,
       "mediaUrl": mediaUrl,
       "postTitle": postTitle,
       "postDescription": postDescription,
+      "date": DateTime.now()
     });
   }
 

@@ -99,6 +99,7 @@ class _ViewFarmersState extends State<ViewFarmers> {
                             height: 70,
                             child: GestureDetector(
                               onTap: (){
+                                print("hehehe farmerUid: ${farmers[index]["uid"]}");
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
                                   return ViewProduce(farmerUid: farmers[index]["uid"]);
                                 }));
@@ -144,8 +145,8 @@ class _ViewFarmersState extends State<ViewFarmers> {
 
 class ViewProduce extends StatefulWidget {
 
-  String farmerUid = "rPmtQmrmelg8EYDFXX9b2jGn8Jz2";
-  ViewProduce({Key? key, String? farmerUid}) : super(key: key);
+  String? farmerUid;
+  ViewProduce({Key? key, this.farmerUid}) : super(key: key);
 
   @override
   _ViewProduceState createState() => _ViewProduceState();
@@ -160,13 +161,13 @@ class _ViewProduceState extends State<ViewProduce> {
   late CollectionReference postsReference;
 
   Future getPosts() async {
-    print("inside get posts");
-    String? uid = "rPmtQmrmelg8EYDFXX9b2jGn8Jz2";
-    // uid = await getUidFromPrefs();
-    uid = this.widget.farmerUid;
-    print("uid: $uid");
+    print("inside get posts: ${this.widget.farmerUid}");
+    // String? uid = "rPmtQmrmelg8EYDFXX9b2jGn8Jz2";
+    // // uid = await getUidFromPrefs();
+    // uid = this.widget.farmerUid;
+    // print(" get posts uid: $uid");
     QuerySnapshot qn =
-    await postsReference.where("farmerId", isEqualTo: uid).get();
+    await postsReference.where("farmerId", isEqualTo: this.widget.farmerUid).get();
     return qn.docs;
   }
 

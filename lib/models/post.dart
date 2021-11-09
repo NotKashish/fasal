@@ -5,6 +5,7 @@ class Post{
   final String postId;
   final String postTitle;
   final String farmerId;
+  final String farmerNo;
   final String description;
   final String mediaUrl;
   String quality;
@@ -14,6 +15,7 @@ class Post{
     required this.postId,
     required this.postTitle,
     required this.farmerId,
+    required this.farmerNo,
     required this.description,
     required this.mediaUrl,
     this.quantity = 1,
@@ -27,6 +29,7 @@ class Post{
         postId: postData['postId'],
       postTitle: postData['postTitle'],
       farmerId: postData['farmerId'],
+      farmerNo: postData['farmerNo'],
       description: postData['postDescription'],
       mediaUrl: postData['mediaUrl']
     );

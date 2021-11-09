@@ -2,6 +2,7 @@ import 'package:fasal/constants/constants.dart';
 import 'package:fasal/models/post.dart';
 import 'package:fasal/styles/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostCard extends StatefulWidget {
 
@@ -75,29 +76,36 @@ class _PostCardState extends State<PostCard> {
             Positioned(
               right: 0,
               bottom: 0,
-              child: Container(
-                padding: EdgeInsets.only(left: 10),
-                width: 200,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)),
-                    border: Border.all(
-                        color: Theme.of(context).accentColor, width: 1),
-                    color: Theme.of(context).cardColor
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("CONTACT", style: Theme.of(context).textTheme.headline6,),
-                    Spacer(),
-                    IconButton(
-                        icon: Icon(
-                          Icons.message,
-                          color: Theme.of(context).accentColor,
-                        ),
-                        onPressed: () {}),
-                  ],
+              child: GestureDetector(
+                onTap: (){
+                  launch(
+                    ('tel: +91${this.widget.post.farmerNo}'),
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 10),
+                  width: 200,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      border: Border.all(
+                          color: Theme.of(context).accentColor, width: 1),
+                      color: Theme.of(context).cardColor
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("CONTACT", style: Theme.of(context).textTheme.headline6,),
+                      Spacer(),
+                      IconButton(
+                          icon: Icon(
+                            Icons.message,
+                            color: Theme.of(context).accentColor,
+                          ),
+                          onPressed: () {}),
+                    ],
+                  ),
                 ),
               ),
             )
