@@ -18,6 +18,7 @@ class ShowHomePage extends StatelessWidget {
   final CollectionReference<Object?> collectionReference;
   final User? firebaseUser;
 
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<DocumentSnapshot>(
@@ -36,15 +37,12 @@ class ShowHomePage extends StatelessWidget {
             if (data['type'] == 'farmer') {
               print(data);
               Farmer farmer = farmerFromMap(data);
-              setValues(farmer.uid, farmer.name, farmer.email, farmer.phoneNo,
-                  farmer.aadharNo, farmer.region);
-              return FarmersHomepage();
+              return FarmersHomepage(farmer: farmer,);
             }
             if (data['type'] == 'wholesaler') {
+               print(data);
               Wholesaler wholesaler = wholesalerFromMap(data);
-              setValues(wholesaler.uid, wholesaler.name, wholesaler.email,
-                  wholesaler.phoneNo, wholesaler.aadharNo, wholesaler.region);
-              return WholesalerHomepage();
+              return WholesalerHomepage(wholesaler: wholesaler,);
             }
           }
           return LoadingPage(icon: Icons.circle, text: 'Loading');

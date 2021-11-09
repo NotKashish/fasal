@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import '../../constants/constants.dart';
 import '../../widgets/custom_textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'authentication_wrapper.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -140,10 +143,8 @@ class _SignUpState extends State<SignUp> {
             ),
             //SIGN UP BUTTON
             InkWell(
-              onTap: () {
-                context
-                    .read<AuthenticationService>()
-                    .signup(
+              onTap: () async {
+                  AuthenticationService(FirebaseAuth.instance).signup(
                       emailController.text.trim(),
                       passwordController.text.trim(),
                       type,
@@ -152,10 +153,11 @@ class _SignUpState extends State<SignUp> {
                       aadharController.text.trim(),
                       region,
                     );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) => SignIn()),
-                );
+                  AuthenticationService(FirebaseAuth.instance).signOut();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AuthenticationWrapper()),
+                  );
               },
               child: new Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
@@ -171,6 +173,37 @@ class _SignUpState extends State<SignUp> {
                     'Sign Up',
                     style: TextStyle(
                       fontSize: 22.0, color: Colors.black87,
+                      fontWeight: FontWeight.w400,
+                      // fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignIn()),
+                );
+              },
+              child: new Container(
+                margin: EdgeInsets.symmetric(horizontal: 30.0),
+                // padding: EdgeInsets.symmetric(horizontal: 10.0),
+                // width: 60.0,
+                height: 50.0,
+                decoration: new BoxDecoration(
+                  color: androidGreen,
+                  borderRadius: new BorderRadius.circular(20.0),
+                ),
+                child: new Center(
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(
+                      fontSize: 25.0, color: Colors.black87,
                       fontWeight: FontWeight.w400,
                       // fontWeight: FontWeight.w600,
                     ),

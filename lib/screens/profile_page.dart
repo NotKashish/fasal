@@ -54,6 +54,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     getData();
+    print("-" * 80);
+    print("$userName\n$userEmail\n$userPhone\n");
+    print("-" * 80);
     super.initState();
   }
 

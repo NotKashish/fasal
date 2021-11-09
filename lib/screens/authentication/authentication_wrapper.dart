@@ -23,6 +23,10 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
         .instance.collection('users');
 
     if(firebaseUser != null){
+      print('-' * 80); 
+      print("Auth wrapper");
+      print(collectionReference.doc(firebaseUser.uid));
+      print('-' * 80);
       return ShowHomePage(
         collectionReference: collectionReference,
         firebaseUser: firebaseUser,
