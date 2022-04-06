@@ -3,6 +3,7 @@ import 'package:fasal/constants/keys.dart';
 import 'package:fasal/helper/shared_preferences_helper.dart';
 import 'package:fasal/models/farmer.dart';
 import 'package:fasal/screens/farmers/farmers_chat.dart';
+import 'package:fasal/screens/farmers/form_page.dart';
 import 'package:fasal/screens/farmers/upload_produce.dart';
 import 'package:fasal/screens/farmers/view_wholesalers.dart';
 import 'package:fasal/screens/profile_page.dart';
@@ -34,6 +35,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
   final screens = [
     ViewWholesalers(),
     UploadProduce(),
+    FormPage(),
     FarmersChat(),
     ProfilePage(),
   ];
@@ -83,6 +85,11 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.upload_rounded),
             label: 'Upload',
+            backgroundColor: mayGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pages),
+            label: 'Form',
             backgroundColor: mayGreen,
           ),
 

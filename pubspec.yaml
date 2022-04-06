@@ -37,7 +37,7 @@ dependencies:
   cached_network_image: ^3.1.0
   uuid: ^3.0.5
   path_provider:
-  
+  flutter_form_builder: ^7.1.1
   # firebase
   firebase_core: ^1.6.0
   firebase_analytics: ^8.3.2
