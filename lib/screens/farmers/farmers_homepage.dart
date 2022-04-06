@@ -36,7 +36,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
     ViewWholesalers(),
     UploadProduce(),
     FormPage(),
-    FarmersChat(),
+    //FarmersChat(),
     ProfilePage(),
   ];
 
@@ -93,11 +93,11 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
             backgroundColor: mayGreen,
           ),
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-            backgroundColor: hunterGreen,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.chat),
+          //   label: 'Chat',
+          //   backgroundColor: hunterGreen,
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
