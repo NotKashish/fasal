@@ -33,9 +33,10 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
 
   int currentIndex = 0;
   final screens = [
+    FormPage(),
     ViewWholesalers(),
     UploadProduce(),
-    FormPage(),
+
     //FarmersChat(),
     ProfilePage(),
   ];
@@ -78,6 +79,11 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
           //   backgroundColor: hunterGreen,
           // ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.pages),
+            label: 'Form',
+            backgroundColor: mayGreen,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'View',
             backgroundColor: oliveGreen,
@@ -87,11 +93,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
             label: 'Upload',
             backgroundColor: mayGreen,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pages),
-            label: 'Form',
-            backgroundColor: mayGreen,
-          ),
+
 
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.chat),
