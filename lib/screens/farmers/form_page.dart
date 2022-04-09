@@ -53,12 +53,13 @@ class _FormPageState extends State<FormPage> {
               currentStep == 0 ? null : ()=> setState(() => currentStep -= 1),
           controlsBuilder: (BuildContext context, ControlsDetails details){
             final isLastStep = currentStep == getSteps().length -1;
+            final isSecondStep = currentStep == getSteps().length -3;
             return Container(
               margin: EdgeInsets.only(top: 50),
               child: Row(
                 children: [
                   Expanded(child: ElevatedButton(
-                    child: Text(isLastStep ? 'CONFIRM' : 'NEXT'),
+                    child: Text(isLastStep ? 'CONFIRM' : 'Next'),
                     onPressed:
                       details.onStepContinue,
                   ),
@@ -76,6 +77,28 @@ class _FormPageState extends State<FormPage> {
                   ),
 
                   ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  if(currentStep ==1)
+                    Expanded(child: ElevatedButton(
+                      child: Text('Not sure? Automate these values'),
+
+                      onPressed: (){},
+
+                    ),
+                    ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  if(currentStep ==2)
+                    Expanded(child: ElevatedButton(
+                      child: Text('Not Sure? Skip'),
+
+                      onPressed: (){},
+
+                    ),
+                    ),
                 ],
               ),
             );
