@@ -200,13 +200,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.local_fire_department),
                   hintText: 'Enter the Temperature',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -222,13 +218,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.invert_colors_on),
                   hintText: 'Enter the Humidity',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -244,13 +236,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.water),
                   hintText: 'Enter the Rainfall',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -279,13 +267,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.invert_colors_sharp),
                   hintText: 'Enter the Nitrogen Level',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -301,13 +285,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.invert_colors_sharp),
                   hintText: 'Enter the Phosphorous Level',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -323,13 +303,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.invert_colors_sharp),
                   hintText: 'Enter the Potassium Level',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -345,13 +321,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.invert_colors_sharp),
                   hintText: 'Enter the pH',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -380,13 +352,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.money),
                   hintText: 'Enter your Budget',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -402,13 +370,9 @@ class _FormPageState extends State<FormPage> {
             const SizedBox(height: 15.0,
             ),
             Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
               child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  //border: InputBorder.none,
                   suffixIcon: Icon(Icons.area_chart),
                   hintText: 'Enter your Area',
                   hintStyle: TextStyle(color: Colors.black87,),
@@ -425,13 +389,9 @@ class _FormPageState extends State<FormPage> {
             ),
             Form(
               child: Container(
-                decoration: BoxDecoration(
-                  color: androidGreen,
-                  borderRadius:  BorderRadius.circular(25),
-                ),
                 child: TextField(
                   decoration: InputDecoration(
-                    border: InputBorder.none,
+                    //border: InputBorder.none,
                     suffixIcon: Icon(Icons.details),
                     hintText: 'Enter the Other Details',
                     hintStyle: TextStyle(color: Colors.black87,),
