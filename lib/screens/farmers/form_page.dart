@@ -15,6 +15,7 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
   int currentStep = 0;
   bool isCompleted = false;
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,11 @@ class _FormPageState extends State<FormPage> {
           onStepContinue: (){
             final isLastStep = currentStep == getSteps().length - 1;
             if(isLastStep){
+              if(formkey.currentState!.validate()){
               setState(() => isCompleted = true);
               print('Completed');
               //send data
+              }
             } else {
               setState(() => currentStep += 1);
             }
@@ -89,65 +92,72 @@ class _FormPageState extends State<FormPage> {
       state: currentStep > 0 ? StepState.complete : StepState.indexed,
       isActive: currentStep >= 0,
       title: Text('One'),
-      content: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('State:-',
-              style: TextStyle(fontSize: 18,),
-            ),
-            const SizedBox(height: 15.0,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
+      content: Form(
+        key: formkey,
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('State:-',
+                style: TextStyle(fontSize: 18,),
               ),
-              child:
-                TextFormField(
+              const SizedBox(height: 15.0,
+              ),
+              Container(
+                child:
+                  TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter state';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Enter State',
+                      //border: InputBorder.none,
+                      suffixIcon: Icon(Icons.house),
+                      hintText: 'Enter your State',
+                      hintStyle: TextStyle(color: Colors.black87,),
+                      contentPadding: EdgeInsets.fromLTRB(15, 15, 15, 0) ,
+                    ),
+                  ),
+                // TextField(
+                //
+                //   decoration: InputDecoration(
+                //     border: InputBorder.none,
+                //     suffixIcon: Icon(Icons.house),
+                //     hintText: 'Enter Your State',
+                //     hintStyle: TextStyle(color: white,),
+                //     contentPadding: EdgeInsets.all(15.0),
+                //   ),
+                // ),
+              ),
+              const SizedBox(height: 20.0,
+              ),
+              Text('District:-',
+                style: TextStyle(fontSize: 18,),
+              ),
+              const SizedBox(height: 15.0,
+              ),
+              Container(
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter state';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
-                    border: InputBorder.none,
-                    suffixIcon: Icon(Icons.house),
-                    hintText: 'Enter your State',
+                    suffixIcon: Icon(Icons.other_houses),
+                    hintText: 'Enter Your District',
                     hintStyle: TextStyle(color: Colors.black87,),
                     contentPadding: EdgeInsets.all(15.0),
                   ),
                 ),
-              // TextField(
-              //
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     suffixIcon: Icon(Icons.house),
-              //     hintText: 'Enter Your State',
-              //     hintStyle: TextStyle(color: white,),
-              //     contentPadding: EdgeInsets.all(15.0),
-              //   ),
-              // ),
-            ),
-            const SizedBox(height: 20.0,
-            ),
-            Text('District:-',
-              style: TextStyle(fontSize: 18,),
-            ),
-            const SizedBox(height: 15.0,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: Icon(Icons.other_houses),
-                  hintText: 'Enter Your District',
-                  hintStyle: TextStyle(color: Colors.black87,),
-                  contentPadding: EdgeInsets.all(15.0),
-                ),
-              ),
-            ),
 
-          ],
+            ],
+          ),
         ),
       ),
 
@@ -390,18 +400,20 @@ class _FormPageState extends State<FormPage> {
             ),
             const SizedBox(height: 15.0,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: androidGreen,
-                borderRadius:  BorderRadius.circular(25),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: Icon(Icons.details),
-                  hintText: 'Enter the Other Details',
-                  hintStyle: TextStyle(color: Colors.black87,),
-                  contentPadding: EdgeInsets.all(15.0),
+            Form(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: androidGreen,
+                  borderRadius:  BorderRadius.circular(25),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    suffixIcon: Icon(Icons.details),
+                    hintText: 'Enter the Other Details',
+                    hintStyle: TextStyle(color: Colors.black87,),
+                    contentPadding: EdgeInsets.all(15.0),
+                  ),
                 ),
               ),
             ),
