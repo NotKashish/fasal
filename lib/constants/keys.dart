@@ -5,3 +5,5 @@ const String PHONE_KEY = 'phoneNo';
 const String AADHAR_KEY = 'aadharNo';
 const String TYPE_KEY = 'userType';
 const String REGION_KEY = 'region';
+
+const String uurl = 'http://10.0.2.2:8000';

@@ -80,7 +80,7 @@ class _FarmersHomepageState extends State<FarmersHomepage> {
           // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pages),
-            label: 'Form',
+            label: 'Crops',
             backgroundColor: mayGreen,
           ),
           BottomNavigationBarItem(
