@@ -41,7 +41,7 @@ class MlApiServices
     if(response.statusCode == 200){
       final responseData = jsonDecode(response.body);
 
-      return responseData['prediction'];
+      return responseData.toString();
     }
     else{
       return "Something went wrong, please try again.";

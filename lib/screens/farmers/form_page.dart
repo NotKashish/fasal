@@ -1,4 +1,5 @@
 import 'package:fasal/constants/all_crops.dart';
+import 'package:fasal/constants/lists.dart';
 import 'package:fasal/services/mlapi_services.dart';
 import 'package:fasal/widgets/crop_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,8 +26,12 @@ class _FormPageState extends State<FormPage> {
   List<Crop> recommendedCropsList = [];
   final formkey = GlobalKey<FormState>();
 
-  TextEditingController stateTextEditingController = TextEditingController();
-  TextEditingController districtTextEditingController = TextEditingController();
+  String currentState = "ANDHRA PRADESH";
+  late String currentDistrict;
+  late List<String>? districtsList;
+
+  //TextEditingController stateTextEditingController = TextEditingController();
+  //TextEditingController districtTextEditingController = TextEditingController();
   TextEditingController temperatureTextEditingController = TextEditingController();
   TextEditingController humidityTextEditingController = TextEditingController();
   TextEditingController rainfallTextEditingController = TextEditingController();
@@ -40,8 +45,8 @@ class _FormPageState extends State<FormPage> {
 
   Map getRainfallDataMap(){
     return {
-      "state": stateTextEditingController.text,
-      "district": districtTextEditingController.text,
+      "state": currentState,
+      "district": currentDistrict,
       "month": DateTime.now().month.toString(),
     };
   }
@@ -90,6 +95,13 @@ class _FormPageState extends State<FormPage> {
     setState(() {
       recommendedCropsList = recommendedCrops;
     });
+  }
+
+  @override
+  void initState() {
+    currentDistrict = allStatesAndDistrictsMap[currentState]![0];
+    districtsList = allStatesAndDistrictsMap[currentState];
+    super.initState();
   }
 
   @override
@@ -208,6 +220,166 @@ class _FormPageState extends State<FormPage> {
         );
   }
 
+  Widget statesDropdown(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      // decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(15),
+      //     border: Border.all(
+      //       color: Colors.black.withOpacity(0.2),
+      //       style: BorderStyle.solid,
+      //       width: 1.5,
+      //     )),
+      margin: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+      child: DropdownButton<String>(
+        underline: const SizedBox(),
+        isExpanded: true,
+        value: currentState.toUpperCase(),
+        borderRadius: BorderRadius.circular(15),
+        elevation: 5,
+        icon: Icon(Icons.arrow_drop_down_rounded),
+        style: const TextStyle(color: Colors.black),
+        //iconEnabledColor: headline2Color,
+        items: allStatesList.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: const TextStyle(
+                  color: Colors.black, fontSize: 16),
+            ),
+          );
+        }).toList(),
+        selectedItemBuilder: (context) {
+          return allStatesList.map((e) {
+            return Row(
+              children: [
+                Icon(
+                  Icons.house,
+                  //color: headline2Color,
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  e,
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            );
+          }).toList();
+        },
+        hint: Row(
+          children: [
+            Icon(
+              Icons.house,
+              //color: headline2Color,
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            const Text(
+              "Select State",
+              style: TextStyle(
+                //color: headline2Color,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+        onChanged: (String? value) {
+          setState(() {
+            currentState = value!;
+            currentDistrict = allStatesAndDistrictsMap[currentState]![0];
+            districtsList = allStatesAndDistrictsMap[currentState];
+          });
+        },
+      ),
+    );
+  }
+
+  Widget districtsDropdown(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      // decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(15),
+      //     border: Border.all(
+      //       color: Colors.black.withOpacity(0.2),
+      //       style: BorderStyle.solid,
+      //       width: 1.5,
+      //     )),
+      margin: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+      child: DropdownButton<String>(
+        underline: const SizedBox(),
+        isExpanded: true,
+        value: currentDistrict.toUpperCase(),
+        borderRadius: BorderRadius.circular(15),
+        elevation: 5,
+        icon: Icon(Icons.arrow_drop_down_rounded),
+        style: const TextStyle(color: Colors.black),
+        //iconEnabledColor: headline2Color,
+        items: districtsList!.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: const TextStyle(
+                  color: Colors.black, fontSize: 16),
+            ),
+          );
+        }).toList(),
+        selectedItemBuilder: (context) {
+          return districtsList!.map((e) {
+            return Row(
+              children: [
+                Icon(
+                  Icons.other_houses,
+                  //color: headline2Color,
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  e,
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            );
+          }).toList();
+        },
+        hint: Row(
+          children: [
+            Icon(
+              Icons.other_houses,
+              //color: headline2Color,
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            const Text(
+              "Select District",
+              style: TextStyle(
+                //color: headline2Color,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+        onChanged: (String? value) {
+          setState(() {
+            currentDistrict = value!;
+          });
+        },
+      ),
+    );
+  }
+
   List<Step> getSteps() => [
     Step(
       state: currentStep > 0 ? StepState.complete : StepState.indexed,
@@ -224,34 +396,35 @@ class _FormPageState extends State<FormPage> {
               ),
               const SizedBox(height: 15.0,
               ),
-              Container(
-                child:
-                  TextFormField(
-                    controller: stateTextEditingController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter state';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.house),
-                      hintText: 'Enter your State',
-                      hintStyle: TextStyle(color: Colors.black87,),
-                      contentPadding: EdgeInsets.fromLTRB(15, 15, 15, 0) ,
-                    ),
-                  ),
-                // TextField(
-                //
-                //   decoration: InputDecoration(
-                //     border: InputBorder.none,
-                //     suffixIcon: Icon(Icons.house),
-                //     hintText: 'Enter Your State',
-                //     hintStyle: TextStyle(color: white,),
-                //     contentPadding: EdgeInsets.all(15.0),
-                //   ),
-                // ),
-              ),
+              statesDropdown(),
+              // Container(
+              //   child:
+              //     TextFormField(
+              //       controller: stateTextEditingController,
+              //       validator: (value) {
+              //         if (value!.isEmpty) {
+              //           return 'Please enter state';
+              //         }
+              //         return null;
+              //       },
+              //       decoration: InputDecoration(
+              //         suffixIcon: Icon(Icons.house),
+              //         hintText: 'Enter your State',
+              //         hintStyle: TextStyle(color: Colors.black87,),
+              //         contentPadding: EdgeInsets.fromLTRB(15, 15, 15, 0) ,
+              //       ),
+              //     ),
+              //   // TextField(
+              //   //
+              //   //   decoration: InputDecoration(
+              //   //     border: InputBorder.none,
+              //   //     suffixIcon: Icon(Icons.house),
+              //   //     hintText: 'Enter Your State',
+              //   //     hintStyle: TextStyle(color: white,),
+              //   //     contentPadding: EdgeInsets.all(15.0),
+              //   //   ),
+              //   // ),
+              // ),
               const SizedBox(height: 20.0,
               ),
               Text('District:',
@@ -259,23 +432,24 @@ class _FormPageState extends State<FormPage> {
               ),
               const SizedBox(height: 15.0,
               ),
-              Container(
-                child: TextFormField(
-                  controller: districtTextEditingController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter state';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.other_houses),
-                    hintText: 'Enter Your District',
-                    hintStyle: TextStyle(color: Colors.black87,),
-                    contentPadding: EdgeInsets.all(15.0),
-                  ),
-                ),
-              ),
+              districtsDropdown(),
+              // Container(
+              //   child: TextFormField(
+              //     controller: districtTextEditingController,
+              //     validator: (value) {
+              //       if (value!.isEmpty) {
+              //         return 'Please enter state';
+              //       }
+              //       return null;
+              //     },
+              //     decoration: InputDecoration(
+              //       suffixIcon: Icon(Icons.other_houses),
+              //       hintText: 'Enter Your District',
+              //       hintStyle: TextStyle(color: Colors.black87,),
+              //       contentPadding: EdgeInsets.all(15.0),
+              //     ),
+              //   ),
+              // ),
 
             ],
           ),
