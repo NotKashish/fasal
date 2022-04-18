@@ -1,6 +1,8 @@
 import 'package:fasal/constants/all_crops.dart';
+import 'package:fasal/constants/keys.dart';
 import 'package:fasal/constants/lists.dart';
 import 'package:fasal/services/mlapi_services.dart';
+import 'package:fasal/services/weatherapi_services.dart';
 import 'package:fasal/widgets/crop_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,8 @@ import '../../constants/constants.dart';
 import '../../models/crop.dart';
 import '../../widgets/drawer.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+
+import '../../widgets/in_app_webview.dart';
 
 class FormPage extends StatefulWidget {
 
@@ -20,6 +24,7 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
 
   MlApiServices _mlApiServices = MlApiServices();
+  WeatherApiServices _weatherApiServices = WeatherApiServices();
 
   int currentStep = 0;
   bool isCompleted = false;
@@ -65,12 +70,32 @@ class _FormPageState extends State<FormPage> {
 
   getClimateValues() async {
     String rainfall = await _mlApiServices.predictRainfall(getRainfallDataMap());
+    dynamic latLon = await _weatherApiServices.geocoding(state: currentState, district: currentDistrict);
+    print("lat+lon: $latLon");
     if(rainfall!="Something went wrong, please try again."){
-      setState(() {
-        rainfallTextEditingController.text = rainfall;
-        temperatureTextEditingController.text = '25.8';
-        humidityTextEditingController.text = '6.7';
-      });
+      if(latLon != "Something went wrong, please try again."){
+        dynamic tempHum = await _weatherApiServices.getTempAndHumidity(lat: latLon['lat'].toString(), lon: latLon['lon'].toString());
+        print("tempHum: $tempHum");
+        if(tempHum != "Something went wrong, please try again."){
+          setState(() {
+            rainfallTextEditingController.text = rainfall;
+            temperatureTextEditingController.text = ((tempHum['temp']-273.15).round()).toString();
+            humidityTextEditingController.text = tempHum['humidity'].toString();
+          });
+        } else {
+          setState(() {
+            rainfallTextEditingController.text = rainfall;
+            temperatureTextEditingController.text = '25.8';
+            humidityTextEditingController.text = '6.7';
+          });
+        }
+      } else {
+        setState(() {
+          rainfallTextEditingController.text = rainfall;
+          temperatureTextEditingController.text = '25.8';
+          humidityTextEditingController.text = '6.7';
+        });
+      }
     } else {
       setState(() {
         rainfallTextEditingController.text = '79.7';
@@ -198,9 +223,11 @@ class _FormPageState extends State<FormPage> {
                       children: [
                         Text("Not sure? "),
                         TextButton(
-                            onPressed: details.onStepContinue,
+                            onPressed: (){
+                              inAppBrowser(soilHealthCard);
+                            },
                             child: Text(
-                              "Skip",
+                              "Get my soil card.",
                               style: TextStyle(
                                   color: mayGreen,
                                   fontWeight: FontWeight.bold
@@ -625,7 +652,7 @@ class _FormPageState extends State<FormPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Budget:',
+            Text('Budget per kg yield:',
               style: TextStyle(fontSize: 18,),
             ),
             const SizedBox(height: 15.0,
@@ -644,7 +671,7 @@ class _FormPageState extends State<FormPage> {
             ),
             const SizedBox(height: 20.0,
             ),
-            Text('Area:',
+            Text('Area (in hectares):',
               style: TextStyle(fontSize: 18,),
             ),
             const SizedBox(height: 15.0,
@@ -654,34 +681,33 @@ class _FormPageState extends State<FormPage> {
                 controller: areaTextEditingController,
                 decoration: InputDecoration(
                   //border: InputBorder.none,
-                  //suffixIcon: Icon(Icons.area_chart),
+                  suffixIcon: Icon(Icons.area_chart),
                   hintText: 'Enter your Area',
                   hintStyle: TextStyle(color: Colors.black87,),
                   contentPadding: EdgeInsets.all(15.0),
                 ),
               ),
             ),
-            SizedBox(height: 15,
-            ),
-            Text('Other Details:',
-              style: TextStyle(fontSize: 18,),
-            ),
-            const SizedBox(height: 15.0,
-            ),
-            Form(
-              child: Container(
-                child: TextField(
-                  controller: otherTextEditingController,
-                  decoration: InputDecoration(
-                    //border: InputBorder.none,
-                    suffixIcon: Icon(Icons.details),
-                    hintText: 'Enter the Other Details',
-                    hintStyle: TextStyle(color: Colors.black87,),
-                    contentPadding: EdgeInsets.all(15.0),
-                  ),
-                ),
-              ),
-            ),
+            SizedBox(height: 15,)
+            // Text('Other Details:',
+            //   style: TextStyle(fontSize: 18,),
+            // ),
+            // const SizedBox(height: 15.0,
+            // ),
+            // Form(
+            //   child: Container(
+            //     child: TextField(
+            //       controller: otherTextEditingController,
+            //       decoration: InputDecoration(
+            //         //border: InputBorder.none,
+            //         suffixIcon: Icon(Icons.details),
+            //         hintText: 'Enter the Other Details',
+            //         hintStyle: TextStyle(color: Colors.black87,),
+            //         contentPadding: EdgeInsets.all(15.0),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
           ],
         ),

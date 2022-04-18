@@ -7,6 +7,13 @@ const String TYPE_KEY = 'userType';
 const String REGION_KEY = 'region';
 
 const String weatherApiKey = '64fd6d1e9573772df60389644d872ff1';
-const String weatherApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}';
+
+//http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={limit}&appid={API key}
+const String geocodingUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=';
+
+//https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+const String weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
 const String uurl = 'http://10.0.2.2:8000';
+
+const String soilHealthCard = "https://www.india.gov.in/spotlight/soil-health-card#tab=tab-1";

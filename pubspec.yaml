@@ -50,6 +50,7 @@ dependencies:
   freezed: ^1.1.1
   http: ^0.13.4
   auto_size_text: ^3.0.0
+  flutter_inappwebview: ^5.3.2
 
 dev_dependencies:
   flutter_test:
