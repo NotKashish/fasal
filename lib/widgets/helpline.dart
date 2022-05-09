@@ -48,20 +48,20 @@ class _HelplineState extends State<Helpline> {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Text(
-                      //"k",
-                      S.of(context).welcomeText,
-                      style: TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    ElevatedButton(onPressed: (){
-                      context.read<LanguageChangeProvider>().changeLocale("hi");
-                    }, child: Text("Hindi")),
-                    ElevatedButton(onPressed: (){
-                      context.read<LanguageChangeProvider>().changeLocale("en");
-                    }, child: Text("English")),
+                    // Text(
+                    //   //"k",
+                    //   S.of(context).welcomeText,
+                    //   style: TextStyle(
+                    //     fontSize: 25.0,
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // ),
+                    // ElevatedButton(onPressed: (){
+                    //   context.read<LanguageChangeProvider>().changeLocale("hi");
+                    // }, child: Text("Hindi")),
+                    // ElevatedButton(onPressed: (){
+                    //   context.read<LanguageChangeProvider>().changeLocale("en");
+                    // }, child: Text("English")),
                     Row(
                       children: [
                         Icon(
